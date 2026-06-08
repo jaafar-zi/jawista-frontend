@@ -1,11 +1,10 @@
-// src/app/shared/transloco/transloco-browser.loader.ts
 import { inject, Injectable, TransferState, makeStateKey } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Translation, TranslocoLoader } from '@jsverse/transloco';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TranslocoBrowserLoader implements TranslocoLoader {
   private readonly http          = inject(HttpClient);
   private readonly transferState = inject(TransferState);
