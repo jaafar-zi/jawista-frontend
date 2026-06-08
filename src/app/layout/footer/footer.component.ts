@@ -35,9 +35,9 @@ export class FooterComponent {
   ];
 
   legal = [
-    { label: 'footer.legal.links.privacyPolicy',  link: '/privacy' },
-    { label: 'footer.legal.links.returns',         link: '/returns' },
-    { label: 'footer.legal.links.termsOfService',  link: '/terms' }
+    { label: 'footer.legal.links.privacyPolicy',  link: 'legal/privacy-policy' },
+    { label: 'footer.legal.links.returns',         link: 'legal/refunds' },
+    { label: 'footer.legal.links.termsOfService',  link: 'legal/terms-of-service' }
   ];
 
   constructor(

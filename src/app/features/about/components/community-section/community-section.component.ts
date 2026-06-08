@@ -16,7 +16,7 @@ export class CommunitySectionComponent implements OnInit, OnDestroy {
   private readonly mediaService = inject(MediaService);
   private readonly destroy$ = new Subject<void>();
 
-  instagramUrl = 'https://instagram.com/yourhandle';
+  instagramUrl = 'https://www.instagram.com/jawista.club/';
 
   /**
    * BRAND/3 = About page community section logo
