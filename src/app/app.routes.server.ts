@@ -1,5 +1,3 @@
-// src/app/app.routes.server.ts
-
 import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const serverRoutes: ServerRoute[] = [
@@ -8,24 +6,8 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
   },
   {
-    path: 'collections/all',
-    renderMode: RenderMode.Server,
-  },
-  {
-    path: 'collections/product/:id',
-    renderMode: RenderMode.Server,
-  },
-  {
     path: 'about',
     renderMode: RenderMode.Prerender,
-  },
-  {
-    path: 'cart',
-    renderMode: RenderMode.Server,
-  },
-  {
-    path: 'checkout',
-    renderMode: RenderMode.Server,
   },
   {
     path: 'legal/privacy-policy',
@@ -45,6 +27,6 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: '**',
-    renderMode: RenderMode.Client,
+    renderMode: RenderMode.Server,
   },
 ];
