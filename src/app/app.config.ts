@@ -17,7 +17,7 @@ import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
-import { TranslocoHttpLoader } from './shared/transloco/transloco-http-loader';
+import { TranslocoBrowserLoader } from './shared/transloco/transloco-browser.loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -41,7 +41,7 @@ export const appConfig: ApplicationConfig = {
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
       },
-      loader: TranslocoHttpLoader,
+      loader: TranslocoBrowserLoader,
     }),
     importProvidersFrom(ApiModule),
     {
