@@ -1,0 +1,169 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+$section-transition-cubic: $transition-cubic;
+$section-transition-duration: $transition-duration-base;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.cta-grid {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-s;
+  padding: $spacing-m;
+  width: 100%;
+  align-items: flex-start;
+  max-width: $container-max-width-wide;
+  margin: 0 auto;
+
+  @include respond-to(sm) {
+    gap: $spacing-md;
+  }
+}
+
+.cta-column {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+
+  &.is-large  { flex: 1 1 50%; min-width: 0; }
+  &.is-small  { flex: 1 1 25%; min-width: 0; }
+  &.is-medium { flex: 1 1 25%; min-width: 0; }
+}
+
+.cta-title-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+
+  &:hover .cta-title {
+    text-decoration: none;
+  }
+}
+
+.cta-title {
+  margin: 0;
+}
+
+.cta-block {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  cursor: none; 
+  width: 100%;
+  transition: transform $transition-duration-fast $section-transition-cubic;
+
+  .cta-column.is-large &  { height: 830px; }
+  .cta-column.is-small &  { height: 426px; }
+  .cta-column.is-medium & { height: 499px; }
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  @include respond-to(lg) {
+    .cta-column.is-large &  { height: 720px; }
+    .cta-column.is-small &  { height: 360px; }
+    .cta-column.is-medium & { height: 430px; }
+  }
+
+  @include respond-to(md) {
+    .cta-column.is-large &  { height: 610px; }
+    .cta-column.is-small &  { height: 305px; }
+    .cta-column.is-medium & { height: 380px; }
+  }
+
+  @include respond-to(sm) {
+    cursor: pointer; 
+    .cta-column.is-large &,
+    .cta-column.is-small &,
+    .cta-column.is-medium & {
+      height: 60vw;
+    }
+  }
+}
+
+.cta-img_wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cta-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform $section-transition-duration $section-transition-cubic;
+  will-change: transform;
+
+  .cta-block:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($color-black, 0);
+  transition: background $section-transition-duration ease;
+  z-index: 2;
+
+  .cta-block:hover & {
+    background: rgba($color-black, 0.2);
+  }
+}
+
+// ── Responsive: Stack on mobile ─────────────────────────────────────────
+@include respond-to(sm) {
+  .cta-grid {
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  .cta-column {
+    &.is-large,
+    &.is-medium,
+    &.is-small {
+      max-width: 100%;
+      width: 100%;
+      flex: 1 1 100%;
+    }
+  }
+}
+
+@include respond-to(xs) {
+  .cta-grid {
+    gap: $spacing-md;
+  }
+
+  .cta-block {
+    .cta-column.is-large &,
+    .cta-column.is-medium &,
+    .cta-column.is-small & {
+      height: 75vw;
+    }
+  }
+}
+
+@include reduced-motion {
+  .cta-img,
+  .cta-block,
+  .cta-title-link {
+    transition: none;
+  }
+}

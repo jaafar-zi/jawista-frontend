@@ -1,0 +1,489 @@
+<!-- navbar.component.html -->
+
+<div class="nav-component" *transloco="let t">
+
+  <!-- ── Full Screen Menu Overlay ──────────────────────────────────── -->
+  <div
+    img-hover_wrap
+    [attr.data-nav]="menuState"
+    class="nav"
+    [@menuState]="animMenuState"
+    [style.display]="menuState === 'open' ? 'block' : 'none'">
+
+    <!-- Overlay Background -->
+    <div
+      class="overlay"
+      [@overlayFade]="animOverlayFade"
+      (click)="closeMenu()">
+    </div>
+
+    <!-- Menu Content -->
+    <nav class="menu" [attr.aria-label]="t('nav.ariaLabel')">
+
+      <!-- Background Panels -->
+      <div class="menu-bg">
+
+        <div
+          class="bg-panel_full"
+          [@panelSlide]="animPanelSlide">
+          <div class="bg-panel_full-img">
+            <img
+              *ngIf="menuConfig?.items?.[0]?.imageUrl as image"
+              [src]="image"
+              alt=""
+              class="img-fill"
+              loading="eager">
+
+            <div class="menu-extras">
+              <div class="u-container">
+                <div class="menu-bottom_layout u-grid-desktop m-centered">
+
+                  <div
+                    class="menu-footer_col u-column-6"
+                    [@fadeIn]="animFadeIn">
+                    <div class="menu-extras_logo">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="100%"
+                        viewBox="0 0 60 77"
+                        fill="none">
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div
+                    class="menu-footer_col u-column-4"
+                    [@fadeIn]="animFadeIn">
+                    <div class="menu-bot_wrap">
+                      <div class="u-text-style-alt">{{ t('nav.menu.copyright') }}</div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="menu-footer_col u-column-2"
+                    [@fadeIn]="animFadeIn">
+                    <div class="u-vflex-right-bottom">
+                      <div class="u-text-style-alt">{{ t('nav.menu.location') }}</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-panel first" [@panelSlide]="animPanelSlide"></div>
+        <div class="bg-panel" [@panelSlide]="animPanelSlide"></div>
+      </div>
+
+      <!-- Menu Inner Content -->
+      <div class="menu-inner">
+        <div class="menu-contain u-container">
+          <div class="menu-layout u-grid-desktop">
+
+            <!-- Hover Image -->
+            <div
+              class="menu-img_wrap u-column-1"
+              [@fadeIn]="animFadeIn">
+              <div
+                class="menu-img_inner"
+                [class.is-visible]="imageState === 'visible'"
+                [class.is-hidden]="imageState === 'hidden'">
+                <div>
+                  <img
+                    [src]="currentImageUrl"
+                    [alt]="activeMenuItem ? t(activeMenuItem.labelKey) : ''"
+                    loading="eager">
+                </div>
+              </div>
+            </div>
+
+            <!-- Menu Links -->
+            <div class="menu-list_wrap u-column-5">
+              <div
+                class="menu-list"
+                [@staggerMenuItems]="animStaggerMenuItems">
+                <div
+                  *ngFor="let item of menuConfig?.items; trackBy: trackByItemId"
+                  class="menu-list-item"
+                  (mouseenter)="onMenuItemHover(item)"
+                  (mouseleave)="onMenuItemLeave()">
+                  <a
+                    [routerLink]="item.url"
+                    [class.active]="isActiveRoute(item.url)"
+                    class="menu-link"
+                    [@menuLinkSlide]="animMenuLinkSlide"
+                    (click)="navigateToMenuItem(item)">
+                    <h3 class="u-text-style-h2 is-menulink">
+                      {{ t(item.labelKey) }}
+                    </h3>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Close Button -->
+            <div class="menu-close_wrap u-column-1">
+              <div
+                class="menu-close"
+                role="button"
+                tabindex="0"
+                [attr.aria-label]="t('nav.menu.closeAriaLabel')"
+                (click)="closeMenu()"
+                (keydown.enter)="closeMenu()"
+                (keydown.space)="$event.preventDefault(); closeMenu()">
+                <div class="body-upper">{{ t('nav.menu.close') }}</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Menu Bottom -->
+        <div class="menu-contain u-container">
+          <div class="menu-bottom_layout is-menu">
+
+            <!-- Left: Cart & Join -->
+            <div class="menu-footer_col u-column-left-stacked">
+              <div class="menu-bot_wrap is-stacked">
+
+                <a
+                  class="menu-cart is-cart"
+                  role="button"
+                  tabindex="0"
+                  [attr.aria-label]="t('nav.links.cartAriaLabel')"
+                  (click)="toggleCart()"
+                  (keydown.enter)="toggleCart()"
+                  (keydown.space)="$event.preventDefault(); toggleCart()">
+                  <div class="body-upper">{{ t('nav.menu.myCart') }}</div>
+                  <div
+                    *ngIf="cart && cart.itemCount > 0"
+                    class="cart-total">
+                    ({{ cart.itemCount }})
+                  </div>
+                </a>
+
+                <div class="text-link">
+                  <div class="body-upper">{{ t('nav.menu.joinTheFam') }}</div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Right: Social Links -->
+            <div class="menu-footer_col u-column-right-aligned">
+              <div class="social-links-wrap">
+                <a
+                  *ngFor="let link of menuConfig?.footer?.socialLinks"
+                  [href]="link.url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-link">
+                  <div class="body-upper">{{ t(link.labelKey) }}</div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Preload Images -->
+        <div class="target-imgs_hidden" aria-hidden="true">
+          <img
+            *ngFor="let item of menuConfig?.items; trackBy: trackByItemId"
+            [src]="item.imageUrl"
+            [alt]="t(item.labelKey)"
+            loading="eager">
+        </div>
+
+      </div>
+    </nav>
+  </div>
+
+  <!-- ── Main Navigation Bar ───────────────────────────────────────── -->
+  <nav
+    class="orgc-nav"
+    [class.scrolled]="isScrolled"
+    [class.is-light]="navThemeService.theme() === 'light'"
+    [class.is-dark]="navThemeService.theme() === 'dark'"
+    [attr.aria-label]="t('nav.ariaLabel')">
+    <div class="nav-contain u-container">
+      <div class="nav-layout u-grid-column-2">
+
+        <!-- Mobile Menu Toggle -->
+        <div class="nav-col is-mobile">
+          <div
+            role="button"
+            tabindex="0"
+            class="menu-toggle"
+            [attr.aria-label]="t('nav.menu.ariaLabel')"
+            (click)="toggleMenu()"
+            (keydown.enter)="toggleMenu()"
+            (keydown.space)="$event.preventDefault(); toggleMenu()">
+            <div class="menu-toggle_line"></div>
+            <div class="menu-toggle_line"></div>
+            <div class="menu-text_wrap">
+              <div class="menu-text_inner">
+                <p class="body-upper">{{ t('nav.menu.text') }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="nav-col">
+          <a
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-logo_link"
+            [attr.aria-label]="t('nav.logoAlt')">
+            <app-image-with-fallback
+              [src]="navThemeService.theme() === 'light'
+                ? 'jawista-logo-light.png'
+                : 'jawista-logo-dark.png'"
+              [alt]="t('nav.logoAlt')"
+              customClass="nav-logo_img">
+            </app-image-with-fallback>
+          </a>
+        </div>
+
+        <!-- Desktop Menu Toggle -->
+        <div class="nav-col">
+          <div
+            role="button"
+            tabindex="0"
+            class="menu-toggle is-desktop"
+            [attr.aria-label]="t('nav.menu.ariaLabel')"
+            (click)="toggleMenu()"
+            (keydown.enter)="toggleMenu()"
+            (keydown.space)="$event.preventDefault(); toggleMenu()">
+            <div class="menu-toggle_line"></div>
+            <div class="menu-toggle_line"></div>
+            <div class="menu-text_wrap">
+              <div class="menu-text_inner">
+                <p class="body-upper">{{ t('nav.menu.text') }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nav Links & Cart -->
+        <div class="nav-col">
+          <div class="nav-links_layout">
+            <app-language-switcher />
+
+            <a
+              routerLink="/collections/all"
+              class="nav-link is-desktop"
+              [attr.aria-label]="t('nav.links.shopNowAriaLabel')">
+              <div class="body-upper">{{ t('nav.links.shopNow') }}</div>
+            </a>
+
+            <a
+              class="nav-link is-cart"
+              role="button"
+              tabindex="0"
+              [attr.aria-label]="t('nav.links.cartAriaLabel')"
+              (click)="toggleCart()"
+              (keydown.enter)="toggleCart()"
+              (keydown.space)="$event.preventDefault(); toggleCart()">
+              <div class="body-upper">{{ t('nav.links.cart') }}</div>
+              <div
+                *ngIf="cart && cart.itemCount > 0"
+                class="cart-total"
+                [attr.aria-label]="cart.itemCount">
+                {{ cart.itemCount }}
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Shopping Cart Sidebar ──────────────────────────────────────── -->
+  <div
+    class="cart-wrapper"
+    [class.open]="cartOpen"
+    role="dialog"
+    [attr.aria-label]="t('cart.sidebar.title')"
+    [attr.aria-hidden]="!cartOpen">
+    <div class="cart-container">
+
+      <!-- Cart Header -->
+      <div class="cart-header">
+        <h4 class="body-upper">{{ t('cart.sidebar.title') }}</h4>
+        <a
+          class="cart-close"
+          role="button"
+          tabindex="0"
+          [attr.aria-label]="t('cart.sidebar.closeAriaLabel')"
+          (click)="closeCart()"
+          (keydown.enter)="closeCart()"
+          (keydown.space)="$event.preventDefault(); closeCart()">
+          <div class="cart-close_icon body-upper">{{ t('cart.sidebar.close') }}</div>
+        </a>
+      </div>
+
+      <!-- Cart Body -->
+      <div class="cart-form_wrap">
+
+        <div
+          *ngIf="cart && cart.items.length > 0; else emptyCart"
+          class="cart-items-container">
+
+          <!-- Items -->
+          <div class="cart-list">
+            <div
+              *ngFor="let item of cart.items; trackBy: trackByCartItemId"
+              class="cart-item">
+
+              <!-- Image -->
+              <div class="checkout-img_wrap">
+                <img
+                  [src]="item.image || 'assets/images/placeholder.jpg'"
+                  [alt]="item.name"
+                  class="checkout-img"
+                  loading="lazy">
+              </div>
+
+              <!-- Details -->
+              <div class="cart-details_contain">
+                <div class="heading_main">{{ item.name }}</div>
+
+                <ul
+                  *ngIf="item.size || item.color || item.sku"
+                  class="cart-option-list">
+                  <li *ngIf="item.size" class="field_copy">
+                    {{ t('cart.item.sizeLabel', { size: item.size }) }}
+                  </li>
+                  <li *ngIf="item.color" class="field_copy">
+                    {{ t('cart.item.colorLabel', { color: item.color }) }}
+                  </li>
+                  <li *ngIf="item.sku" class="field_copy">
+                    {{ t('cart.item.skuLabel', { sku: item.sku }) }}
+                  </li>
+                </ul>
+
+                <div class="cart-item_price">
+                  <div class="body-upper">
+                    {{ formatPrice(item.price, cart.currency) }}
+                  </div>
+                </div>
+
+                <a
+                  class="remove_contain"
+                  role="button"
+                  tabindex="0"
+                  [attr.aria-label]="t('cart.item.removeAriaLabel', { name: item.name })"
+                  (click)="removeCartItem(item.id)"
+                  (keydown.enter)="removeCartItem(item.id)"
+                  (keydown.space)="$event.preventDefault(); removeCartItem(item.id)">
+                  <div class="field_copy">{{ t('cart.item.remove') }}</div>
+                </a>
+              </div>
+
+              <!-- Quantity -->
+              <input
+                type="number"
+                [value]="item.quantity"
+                min="1"
+                class="cart-quantity"
+                [attr.aria-label]="t('cart.item.quantityAriaLabel', { name: item.name })"
+                (change)="onQuantityChange(item.id, $event)">
+
+            </div>
+          </div>
+
+          <!-- Cart Footer -->
+          <div class="cart-footer">
+
+            <div class="cart-line_item">
+              <div class="field_copy">{{ t('cart.summary.subtotal') }}</div>
+              <div class="body-upper">{{ formatPrice(cart.subtotal, cart.currency) }}</div>
+            </div>
+
+            <div
+              *ngIf="cart.tax && cart.tax > 0"
+              class="cart-line_item">
+              <div class="field_copy">{{ t('cart.summary.tax') }}</div>
+              <div class="body-upper">{{ formatPrice(cart.tax, cart.currency) }}</div>
+            </div>
+
+            <div class="cart-line_item">
+              <div class="field_copy">{{ t('cart.summary.shipping') }}</div>
+              <div class="body-upper">
+                <ng-container *ngIf="cart.shipping && cart.shipping > 0; else shippingCalculated">
+                  {{ formatPrice(cart.shipping, cart.currency) }}
+                </ng-container>
+                <ng-template #shippingCalculated>
+                  {{ t('cart.summary.shippingNotice') }}
+                </ng-template>
+              </div>
+            </div>
+
+            <div
+              *ngIf="cart.discount && cart.discount > 0"
+              class="cart-line_item">
+              <div class="field_copy">{{ t('cart.summary.discount') }}</div>
+              <div class="body-upper">-{{ formatPrice(cart.discount, cart.currency) }}</div>
+            </div>
+
+            <div class="cart-line_item is-total">
+              <div class="field_copy">{{ t('cart.summary.total') }}</div>
+              <div class="body-upper">{{ formatPrice(cart.total, cart.currency) }}</div>
+            </div>
+
+            <div class="checkout-actions">
+              <app-button
+                variant="primary"
+                size="large"
+                [fullWidth]="true"
+                [ariaLabel]="t('cart.summary.checkout')"
+                (clicked)="navigateToCheckout()">
+                {{ t('cart.summary.checkout') }}
+              </app-button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Empty Cart State -->
+        <ng-template #emptyCart>
+          <div class="empty-state">
+            <div class="empty-cart_layout">
+
+              <div class="empty-cart_title body-upper">
+                {{ t('cart.sidebar.emptyTitle') }}
+              </div>
+
+              <div class="empty-cart_message body-upper">
+                {{ t('cart.sidebar.emptyMessage') }}
+              </div>
+
+              <a
+                routerLink="/collections/all"
+                class="empty-cart_cta"
+                [attr.aria-label]="t('cart.sidebar.shopNowAriaLabel')"
+                (click)="closeCart()"
+                dir="ltr">
+                <span class="empty-cart_bracket" aria-hidden="true">[</span>
+                <span class="empty-cart_cta-text body-upper" dir="auto">
+                  {{ t('cart.sidebar.shopNow') }}
+                </span>
+                <span class="empty-cart_bracket" aria-hidden="true">]</span>
+              </a>
+
+            </div>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+
+</div>

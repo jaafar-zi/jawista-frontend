@@ -1,0 +1,45 @@
+<app-section-container
+  variant="default"
+  maxWidth="lg"
+  padding="none"
+  [centered]="true">
+
+  <div class="about-section__meta">
+    <span class="about-section__meta-text">
+      {{ 'home.aboutSection.brand' | transloco : { year: currentYear } }}
+    </span>
+
+    <span class="about-section__meta-text">
+      {{ 'home.aboutSection.location.country' | transloco }}
+    </span>
+  </div>
+
+  <span class="about-section__meta-text about-section__title">
+      {{ 'home.aboutSection.title' | transloco }}
+  </span>
+
+  <app-description-text
+    class="about-section__description"
+    size="lg"
+    alignment="center"
+    [maxWidth]="true">
+    {{ 'home.aboutSection.description1' | transloco }}
+  </app-description-text>
+
+  <app-description-text
+    class="about-section__description"
+    size="lg"
+    alignment="center"
+    [maxWidth]="true">
+    {{ 'home.aboutSection.description2' | transloco }}
+  </app-description-text>
+
+  <!-- Decorative Image -->
+  <div class="about-section__img-wrapper">
+    <img
+      [className]="'about-section__img'"
+      [src]="aboutImageUrl$ | async"
+      alt="About section visual"/>
+  </div>
+
+</app-section-container>

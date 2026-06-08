@@ -1,0 +1,94 @@
+<footer class="footer">
+  <div class="u-container footer__container">
+    <!-- Top Section with Logo -->
+    <div class="footer__top">
+      <div class="footer__logo-section">
+        <div class="footer__logo-shell">
+          <img
+            src="jawista-logo-light.png"
+            [alt]="'nav.logoAlt' | transloco"
+            class="footer__logo"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Section with Links -->
+    <div class="footer__links">
+      <!-- Site Index -->
+      <div class="footer__column">
+        <h3 class="footer__heading">
+          {{ 'footer.siteIndex.title' | transloco }}
+        </h3>
+        <ul class="footer__list">
+          <li *ngFor="let item of siteIndex">
+            <a [routerLink]="item.link" class="footer__link">
+              {{ item.label | transloco }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social -->
+      <div class="footer__column">
+        <h3 class="footer__heading">
+          {{ 'footer.social.title' | transloco }}
+        </h3>
+        <ul class="footer__list">
+          <li *ngFor="let item of social">
+            <a
+              *ngIf="item.external; else internalLink"
+              [href]="item.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer__link"
+            >
+              {{ item.label | transloco }}
+            </a>
+
+            <ng-template #internalLink>
+              <a [href]="item.link" class="footer__link">
+                {{ item.label | transloco }}
+              </a>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Connect -->
+      <div class="footer__column">
+        <h3 class="footer__heading">
+          {{ 'footer.connect.title' | transloco }}
+        </h3>
+        <ul class="footer__list">
+          <li *ngFor="let item of connect">
+            <a [href]="item.link" class="footer__link">
+              {{ item.label | transloco }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="footer__column">
+        <h3 class="footer__heading">
+          {{ 'footer.legal.title' | transloco }}
+        </h3>
+        <ul class="footer__list">
+          <li *ngFor="let item of legal">
+            <a [routerLink]="item.link" class="footer__link">
+              {{ item.label | transloco }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer__bottom">
+      <p class="footer__copyright">
+        {{ 'footer.copyright' | transloco : { year: currentYear } }}
+      </p>
+    </div>
+  </div>
+</footer>

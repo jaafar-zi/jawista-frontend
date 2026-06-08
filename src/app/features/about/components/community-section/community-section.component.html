@@ -1,0 +1,49 @@
+<app-section-container
+  variant="default"
+  maxWidth="lg"
+  padding="none"
+  [centered]="true">
+
+  <div class="community-section">
+
+    <!-- Logo image -->
+    <div class="community-section__logo">
+      <app-image-with-fallback
+        [src]="logoUrl"
+        [alt]="'Jawista community logo'"
+        customClass="community-logo-image">
+      </app-image-with-fallback>
+    </div>
+
+    <!-- Description -->
+    <div class="community-section__content">
+      <app-description-text
+        class="community-section__description"
+        size="lg"
+        alignment="center"
+        [maxWidth]="true">
+        {{ 'about.community.label' | transloco }}
+      </app-description-text>
+
+      <app-description-text
+        class="community-section__description"
+        size="lg"
+        alignment="center"
+        [maxWidth]="true">
+        {{ 'about.community.description' | transloco }}
+      </app-description-text>
+    </div>
+
+    <!-- Instagram CTA -->
+    <div class="community-section__cta">
+      <app-bracket-cta
+        [text]="'about.community.ctaAriaLabel' | transloco"
+        [href]="instagramUrl"
+        [colorScheme]="'dark'"
+        (ctaClick)="onInstagramClick($event)">
+      </app-bracket-cta>
+    </div>
+
+  </div>
+
+</app-section-container>

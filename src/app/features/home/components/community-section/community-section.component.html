@@ -1,0 +1,51 @@
+<app-section-container
+  variant="default"
+  maxWidth="xl"
+  padding="xl">
+
+  <div class="community__header-content">
+      <img
+        class="community__logo"
+        [src]="logoUrl"
+        alt="Community logo"/>
+  </div>
+
+  <!-- Content Sections -->
+  <div class="community__content">
+    <div
+      *ngFor="let section of sections; trackBy: trackByTitleKey"
+      class="community__section"
+      (mouseenter)="onSectionHover(section)"
+      (mouseleave)="onSectionLeave(section)">
+
+      <!-- Left: Image -->
+      <div class="community__image-col">
+        <div
+          class="community__image-wrapper"
+          [class.community__image-wrapper--visible]="section.isHovered">
+          <app-image-with-fallback
+            [src]="section.imageUrl"
+            [alt]="section.imageAltKey | transloco"
+            customClass="community__image">
+          </app-image-with-fallback>
+        </div>
+      </div>
+
+      <!-- Right: Text -->
+      <div class="community__text-col">
+        <app-section-title
+          level="h3"
+          size="section"
+          weight="bold">
+          {{ section.titleKey | transloco }}
+        </app-section-title>
+
+        <app-description-text size="sm">
+          {{ section.descriptionKey | transloco }}
+        </app-description-text>
+      </div>
+
+    </div>
+  </div>
+
+</app-section-container>

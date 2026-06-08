@@ -1,0 +1,151 @@
+:host {
+  display: block;
+}
+
+.image-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  min-height: 32rem;
+  overflow: hidden;
+  background: #000;
+  isolation: isolate;
+}
+
+app-image-with-fallback.image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+:host ::ng-deep app-image-with-fallback.image,
+:host ::ng-deep app-image-with-fallback.image picture,
+:host ::ng-deep app-image-with-fallback.image img {
+  width: 100%;
+  height: 100%;
+}
+
+:host ::ng-deep app-image-with-fallback.image picture,
+:host ::ng-deep app-image-with-fallback.image img {
+  display: block;
+}
+
+:host ::ng-deep app-image-with-fallback.image img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.image-section-content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 10rem) 1fr minmax(0, 10rem);
+  align-items: center;
+  gap: clamp(1rem, 2vw, 2rem);
+  padding: clamp(1rem, 4vw, 4rem);
+  color: #fff;
+}
+
+.image-section-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+  z-index: -1;
+}
+
+.image-section-text {
+  min-width: 0;
+  font-size: clamp(0.75rem, 0.55rem + 0.5vw, 0.875rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.image-section-text--left {
+  justify-self: start;
+  text-align: left;
+  max-width: 10rem;
+}
+
+.image-section-text--right {
+  justify-self: end;
+  text-align: right;
+  max-width: 10rem;
+}
+
+.image-section-text--center {
+  justify-self: center;
+  width: min(100%, 18ch);
+  margin: 0;
+  text-align: center;
+  text-wrap: balance;
+  font-size: clamp(1.75rem, 3.5vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 767px) {
+  .image-section {
+    min-height: 28rem;
+  }
+
+  .image-section-content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      "center center"
+      "left right";
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .image-section-text--center {
+    grid-area: center;
+    align-self: center;
+    justify-self: center;
+    width: min(100%, 14ch);
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+
+  .image-section-text--left {
+    grid-area: left;
+    align-self: end;
+    max-width: 8rem;
+  }
+
+  .image-section-text--right {
+    grid-area: right;
+    align-self: end;
+    justify-self: end;
+    max-width: 8rem;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .image-section-content::before {
+    background: rgba(0, 0, 0, 0.42);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-section,
+  .image-section-content,
+  .image-section-text {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .image-section-content::before {
+    background: rgba(0, 0, 0, 0.34);
+  }
+}

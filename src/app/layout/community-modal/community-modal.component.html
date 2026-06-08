@@ -1,0 +1,116 @@
+<div
+  *ngIf="isVisible"
+  class="modal-overlay"
+  [class.closing]="isClosing"
+  (click)="onOverlayClick($event)"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title">
+
+  <div class="modal-card" [class.closing]="isClosing">
+
+    <div class="modal-image" aria-hidden="true">
+      <img
+        src="community-modal-cover.jpg">
+    </div>
+
+    <div class="modal-content">
+
+      <button
+        class="modal-close"
+        (click)="close()"
+        [attr.aria-label]="'communityModal.closeAriaLabel' | transloco">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="1" y1="1" x2="15" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="15" y1="1" x2="1" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <ng-container *ngIf="!submitted; else successTpl">
+
+        <h2 id="modal-title" class="modal-title">
+          {{ 'communityModal.titleLine1' | transloco }}<br>
+          <strong>{{ 'communityModal.titleLine2' | transloco }}</strong>
+        </h2>
+
+        <div class="error-banner" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <form
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()"
+          novalidate
+          autocomplete="off"
+          class="modal-form">
+
+          <app-form-input
+            type="text"
+            variant="underline"
+            formControlName="nameSurname"
+            [placeholder]="'communityModal.namePlaceholder' | transloco"
+            [errorMessage]="getNameError() | transloco"
+            [invalid]="nameSurname?.invalid && nameSurname?.touched">
+          </app-form-input>
+
+          <app-form-input
+            type="email"
+            variant="underline"
+            formControlName="email"
+            [placeholder]="'communityModal.emailPlaceholder' | transloco"
+            [errorMessage]="getEmailError() | transloco"
+            [invalid]="email?.invalid && email?.touched">
+          </app-form-input>
+
+          <div class="modal-form__prefix-group">
+            <app-form-input
+              type="text"
+              variant="underline"
+              formControlName="prefix"
+              [placeholder]="'communityModal.prefixPlaceholder' | transloco"
+              [errorMessage]="getPrefixError() | transloco"
+              [invalid]="prefix?.invalid && prefix?.touched">
+            </app-form-input>
+
+            <span
+              *ngIf="prefix?.valid && prefix?.value"
+              class="modal-form__prefix-hint">
+              {{ 'communityModal.prefixHint' | transloco : { prefix: prefix?.value?.toUpperCase() } }}
+            </span>
+          </div>
+
+          <button
+            type="submit"
+            class="submit-btn"
+            [disabled]="submitting">
+            <ng-container *ngIf="!submitting; else loadingTpl">
+              {{ 'communityModal.submitButton' | transloco }}
+            </ng-container>
+            <ng-template #loadingTpl>
+              {{ 'communityModal.submitting' | transloco }}
+            </ng-template>
+          </button>
+
+        </form>
+
+      </ng-container>
+
+      <ng-template #successTpl>
+        <div class="success-message">
+          <p>{{ 'communityModal.successTitle' | transloco }}</p>
+          <p class="success-sub">
+            {{ 'communityModal.successSubtitle' | transloco }}
+          </p>
+
+          <div class="discount-code-display" *ngIf="generatedCode">
+            <span class="discount-label">
+              {{ 'communityModal.discountLabel' | transloco }}
+            </span>
+            <span class="discount-code">{{ generatedCode }}</span>
+          </div>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</div>

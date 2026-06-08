@@ -1,0 +1,9 @@
+<!-- skeleton.component.html -->
+<div
+  class="skeleton"
+  [class]="'skeleton skeleton--' + variant"
+  [style.width]="variant !== 'square' ? width : null"
+  [style.height]="variant !== 'square' ? height : null"
+  aria-hidden="true"
+  role="presentation"
+></div>

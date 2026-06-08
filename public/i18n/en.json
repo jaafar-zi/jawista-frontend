@@ -1,0 +1,594 @@
+{
+  "seo": {
+    "siteName": "Jawista",
+    "home": {
+      "title": "Jawista — The One Who Knows How to Enjoy",
+      "description": "Born from a Tunisian instinct for simple joy, Jawista lives in the moments that matter — sand, sea, breath, connection. Discover our Collection 01 El Mediterraneo. Locally designed & produced in Tunisia.",
+      "keywords": "Jawista, Tunisian streetwear, El Mediterraneo, beach rackets, locally made Tunisia, premium clothing, limited drops"
+    },
+    "collections": {
+      "title": "All Collections — El Mediterraneo",
+      "description": "Shop Jawista Collection 01 El Mediterraneo — premium T-shirts, flow bags, beach rackets and ball sets. Designed for the moment, locally made in Tunisia. Limited drops available now.",
+      "keywords": "Jawista collections, El Mediterraneo, Chill Bro T-shirt, Flow Bag, beach rackets, Jawista Pro, Jawista Club, Tunisia streetwear, limited edition"
+    },
+    "productFallback": {
+      "description": "Shop {{productName}} at Jawista. Locally designed & produced in Tunisia.",
+      "keywords": "{{productName}}, Jawista, Tunisia, streetwear, beach, locally made"
+    },
+    "about": {
+      "title": "About Jawista — Designed for the Moment",
+      "description": "Jawista — The one who knows how to enjoy. Born from a Tunisian instinct for simple joy, we create objects that are made to be used, but also to be felt. A brand for people who move, pause, notice, and enjoy things in their own way. Locally designed & produced in Tunisia.",
+      "keywords": "Jawista story, about Jawista, Tunisian brand, streetwear Tunisia, locally made, El Mediterraneo, mindful living, presence, community"
+    },
+    "cart": {
+      "title": "Your Cart",
+      "description": "Review the items in your Jawista cart before checkout. Free shipping details and secure payment."
+    },
+    "checkout": {
+      "title": "Checkout",
+      "description": "Complete your Jawista order securely. Shipping across Tunisia with order tracking and customer support."
+    },
+    "legal": {
+      "privacyPolicy": {
+        "title": "Privacy Policy",
+        "description": "Learn how Jawista Club collects, uses and protects your personal information. We collect only what is needed — name, phone, delivery address and order details — and never share your data with third parties without consent.",
+        "keywords": "Jawista privacy, data protection, personal information, Tunisia"
+      },
+      "refunds": {
+        "title": "Refund Policy",
+        "description": "Jawista Club refund policy — full refund for wrong or defective items. Returns accepted in original condition within the eligible period. Refunds processed within 3 days, replacements within 7 days.",
+        "keywords": "Jawista refund, return policy, exchange, money back, Tunisia"
+      },
+      "shipping": {
+        "title": "Shipping Policy",
+        "description": "Jawista Club shipping information — delivery across Tunisia. Order tracking, shipping fees and estimated delivery times for all Jawista products.",
+        "keywords": "Jawista shipping, delivery Tunisia, shipping fees, order tracking"
+      },
+      "termsOfService": {
+        "title": "Terms of Service",
+        "description": "Terms & Conditions governing your use of the Jawista Club website. By accessing this site you agree to these terms. All content and intellectual property belong to Jawista Club. Governed by the laws of Tunisia.",
+        "keywords": "Jawista terms, conditions, legal, Tunisia law, intellectual property"
+      }
+    },
+    "notFound": {
+      "title": "Page Not Found",
+      "description": "The page you are looking for does not exist. Explore Jawista collections or head back to the homepage."
+    }
+  },
+  "home": {
+    "moreThanGolf": {
+      "header": {
+        "logo": "odd ritual",
+        "title": "MORE THAN JUST GOLF"
+      },
+      "nav": {
+        "ariaLabel": "Main navigation",
+        "shopNow": "SHOP NOW",
+        "shopNowAriaLabel": "Shop now",
+        "cart": "CART",
+        "cartAriaLabel": "View cart"
+      },
+      "sections": {
+        "0": {
+          "title": "A way of life",
+          "description": "Jawista is a reflection of how we live and what we share. Rooted in culture and community, it exists to bring intention back into everyday moments. We create with purpose, collaborate with care, and build beyond products toward a more present and meaningful way of experiencing life.",
+          "imageAlt": "Community engagement and giving back initiatives"
+        },
+        "1": {
+          "title": "SUSTAINABILITY",
+          "description": "Creating apparel that respects both tradition and the planet. We source responsibly, manufacture locally, and design with longevity in mind. Every piece is made to last beyond seasons and trends.",
+          "imageAlt": "Sustainable manufacturing and local production"
+        },
+        "2": {
+          "title": "COMMUNITY",
+          "description": "Jawista — it’s a reflection of how we live and what we share. Rooted in culture and community, it exists to bring intention back into everyday moments. We create with purpose, collaborate with care, and build beyond products — toward a more present and meaningful way of experiencing life.",
+          "imageAlt": "Diverse golf community and inclusive culture"
+        }
+      },
+      "decorativeStars": {
+        "ariaLabel": "Decorative stars"
+      }
+    },
+    "heroSlider": {
+      "navigation": {
+        "navAriaLabel": "Hero slider navigation",
+        "scroll": "Scroll",
+        "nextButton": "Next",
+        "nextSlideAriaLabel": "Next slide",
+        "sliderRegionAriaLabel": "Hero slider"
+      },
+      "slides": {
+        "goToSlideAriaLabel": "Go to slide {{index}}",
+        "slideAriaLabel": "Slide {{current}} of {{total}}",
+        "thumbnailAlt": "Thumbnail for {{title}}",
+        "liveStatus": "Showing slide {{current}} of {{total}}",
+        "0": {
+          "title": "SHOP NOW",
+          "ctaText": "EXPLORE OUR FIRST COLLECTION"
+        },
+        "1": {
+          "title": "About Us",
+          "ctaText": "THE ONE WHO KNOWS HOW TO ENJOY."
+        },
+        "2": {
+          "title": "COMMUNITY",
+          "ctaText": "FOLLOW US ON INSTAGRAM TO JOIN THE JOURNEY"
+        }
+      }
+    },
+    "aboutSection": {
+      "brand": "JWSTC©{{year}}",
+      "title": "Designed and Made Locally",
+      "location": {
+        "country": "Tunisia"
+      },
+      "description1": "Our country is rich in culture, nature, and heritage,",
+      "description2": "we choose to create locally, so home travels with us..."
+    },
+    "brandSection": {
+      "logoAlt": "Jawista Brand Logo",
+      "text": "Born from a Tunisian instinct for simple joy. Jawista lives in the moments that matter : Sand, Sea, Breath and connection. A mindset of presence, where life is felt, not just lived."
+    },
+    "featuredProductsSection": {
+      "title": "Featured Products",
+      "cta": "View All Products"
+    },
+    "showcaseSlider": {
+      "navigation": {
+        "navAriaLabel": "Showcase slider navigation",
+        "sliderRegionAriaLabel": "Media showcase slider"
+      },
+      "cursor": {
+        "next": "NEXT",
+        "prev": "PREV"
+      },
+      "footer": {
+        "collectionName": "Collection 26"
+      },
+      "slides": {
+        "0": {
+          "alt": "Collection 26 detail",
+          "title": "Collection 26 Detail"
+        },
+        "1": {
+          "alt": "Collection 26 heritage",
+          "title": "Collection 26 Heritage"
+        },
+        "2": {
+          "alt": "Collection 26 local",
+          "title": "Collection 26 Local"
+        },
+        "3": {
+          "alt": "Collection 26 local",
+          "title": "Collection 26 Local"
+        },
+        "4": {
+          "alt": "Collection 26 local",
+          "title": "Collection 26 Local"
+        },
+        "5": {
+          "alt": "Collection 26 local",
+          "title": "Collection 26 Local"
+        },
+        "6": {
+          "alt": "Collection 26 local",
+          "title": "Collection 26 Local"
+        },
+        "slideAriaLabel": "Slide {{current}} of {{total}}",
+        "indicatorAriaLabel": "Go to slide {{index}}",
+        "liveStatus": "Showing slide {{current}} of {{total}}"
+      }
+    },
+    "threeColumnSection": {
+      "products": {
+        "label": "Our Products",
+        "ctaSubLabel": "Collection 01 & 02",
+        "ctaText": "Shop now"
+      },
+      "community": {
+        "label": "Our Community",
+        "ctaSubLabel": "Social",
+        "ctaText": "Instagram"
+      },
+      "story": {
+        "label": "Our Story",
+        "ctaSubLabel": "About us",
+        "ctaText": "Read more"
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "ourName": "[ our name ]",
+      "description": "We named Jawista after something deeply rooted in the Tunisian spirit — that instinct to seek Jaw, to live fully in the moment, and to find beauty in the simplest things. (\"Jaw\" meaning joy or good vibes in local dialect) A Jawista is someone who doesn't just pass through life, but feels it. The warmth of sand underfoot, the rhythm of waves, a shared laugh, a quiet breath at sunrise. It's a mindset shaped by presence, but also by awareness — noticing the small details others overlook, and turning them into meaningful moments. We all seek joy in the details, the small rituals and habits that make each moment yours.",
+      "title": "The one who knows how to enjoy."
+    },
+    "community": {
+      "label": "Step into Jawista.",
+      "description": "Fresh drops, hidden details, and what happens behind the scenes.",
+      "ctaAriaLabel": "all on Instagram."
+    },
+    "heroSection": {
+      "logoAriaLabel": "jawista logo",
+      "title": "The one who knows how to enjoy",
+      "ourName": "[ our name ]",
+      "description": "We named Jawista after something deeply rooted in the Tunisian spirit — that instinct to seek Jaw, to live fully in the moment, and to find beauty in the simplest things. (\"Jaw\" meaning joy or good vibes in local dialect) A Jawista is someone who doesn't just pass through life, but feels it. The warmth of sand underfoot, the rhythm of waves, a shared laugh, a quiet breath at sunrise. It's a mindset shaped by presence, but also by awareness — noticing the small details others overlook, and turning them into meaningful moments. We all seek joy in the details, the small rituals and habits that make each moment yours."
+    },
+    "imageSection": {
+      "ariaLabel": "Image section: {{centerText}}",
+      "defaults": {
+        "leftText": "JAWISTA",
+        "centerText": "The one who knows how to enjoy",
+        "rightText": "TUNISIA"
+      }
+    },
+    "stickyGallery": {
+      "items": {
+        "1": { "alt": "Odd Ritual collection 1" },
+        "2": { "alt": "Odd Ritual collection 2" },
+        "3": { "alt": "Odd Ritual collection 3" },
+        "4": { "alt": "Odd Ritual collection 4" }
+      }
+    },
+    "storySection": {
+      "subtitle": "(     our story     )",
+      "mainText": "Designed for the moment, shaped by the way you live it.",
+      "paragraph": "We started Jawista from a simple feeling the things we use every day rarely reflect how we actually experience life. They work, but they don't feel. Especially around moments that matter to us, like the beach, movement, or time shared with others. Everything felt either too generic or disconnected from the way we see and enjoy the world. At the same time, our connection to these moments runs deep. The simplicity of being present. The attention to small details. The quiet balance between movement and pause. These are the things that make an experience real… and memorable. Jawista is our way of bringing that mindset into what we create. Objects that are made to be used, but also to be felt. A brand for people who move, pause, notice, and enjoy things in their own way. We're not trying to redefine anything just to make space for a more honest, more human way of living the moment."
+    },
+    "page": {
+      "stickyBackground": {
+        "title": "Our Collections",
+        "subtitle": "Scroll to discover our curated selections"
+      },
+      "cta": {
+        "title": "Ready to Explore?",
+        "subtitle": "Discover our latest collections and be part of our story",
+        "button": "Shop Now"
+      }
+    }
+  },
+  "products": {
+    "list": {
+      "emptyState": {
+        "title": "No products found matching your criteria.",
+        "subtitle": "Try adjusting your filters or search query.",
+        "clearFilters": "Clear All Filters"
+      }
+    },
+    "gallery": {
+      "additionalImageAlt": "{{productName}} - Image {{index}}"
+    },
+    "info": {
+      "colorLabel": "Color",
+      "outOfStock": "This product is out of stock.",
+      "addToCartSuccess": "Added to cart successfully!",
+      "addToCart": "Add to Cart",
+      "addingToCart": "Adding to cart..."
+    },
+    "quantitySelector": {
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity"
+    },
+    "detail": {
+      "backToProducts": "Back to Products",
+      "errorLoading": "Failed to load product. Please try again.",
+      "selectSizeError": "Please select a size before adding to cart."
+    },
+    "collectionHeader": {
+      "allProducts": "ALL PRODUCTS",
+      "name": "Collection 01 El Mediterraneo"
+    },
+    "card": {
+      "viewProduct": "View Product",
+      "viewAriaLabel": "View {{name}}",
+      "quickView": "Quick View",
+      "addToCart": "Add to Cart",
+      "addToWishlist": "Add to wishlist",
+      "removeFromWishlist": "Remove from wishlist"
+    }
+  },
+  "cart": {
+    "sidebar": {
+      "title": "My Cart",
+      "close": "Close",
+      "closeAriaLabel": "Close shopping cart",
+      "emptyTitle": "Your cart is empty",
+      "emptyMessage": "Come on, treat yourself.\nYou deserve it",
+      "shopNow": "Shop now",
+      "shopNowAriaLabel": "Browse products to add to cart"
+    },
+    "item": {
+      "sizeLabel": "Size: {{size}}",
+      "colorLabel": "Color: {{color}}",
+      "skuLabel": "SKU: {{sku}}",
+      "decreaseQuantity": "Decrease quantity",
+      "increaseQuantity": "Increase quantity",
+      "remove": "Remove",
+      "removeAriaLabel": "Remove {{name}} from cart",
+      "quantityAriaLabel": "Quantity for {{name}}"
+    },
+    "summary": {
+      "subtotal": "Subtotal",
+      "tax": "Tax",
+      "shipping": "Shipping",
+      "discount": "Discount",
+      "total": "Total",
+      "shippingNotice": "Shipping calculated at checkout",
+      "checkout": "Checkout",
+      "continueShopping": "Continue Shopping"
+    },
+    "notification": {
+      "itemAdded": "{{name}} added to cart",
+      "itemRemoved": "{{name}} removed from cart",
+      "quantityUpdated": "Quantity updated to {{quantity}}"
+    }
+  },
+  "checkout": {
+    "form": {
+      "pageTitle": "Checkout",
+      "contact": {
+        "heading": "Contact",
+        "phonePlaceholder": "Phone number",
+        "emailPlaceholder": "Email",
+        "emailOptional": "Email (Optional)",
+        "phoneRequired": "Phone number is required"
+      },
+      "delivery": {
+        "heading": "Delivery",
+        "namePlaceholder": "Full name",
+        "addressPlaceholder": "Address",
+        "cityPlaceholder": "Select city",
+        "provincePlaceholder": "Province",
+        "postalCodePlaceholder": "Postal code"
+      },
+      "submit": {
+        "placeOrder": "Place Order",
+        "processing": "Processing..."
+      },
+      "errors": {
+        "phoneRequired": "Phone number is required",
+        "phoneInvalid": "Please enter a valid phone number",
+        "nameRequired": "Name is required",
+        "nameMinLength": "Name must be at least 2 characters",
+        "addressRequired": "Address is required",
+        "addressMinLength": "Address must be at least 5 characters",
+        "cityRequired": "Please select a city",
+        "postalCodeRequired": "Postal code is required"
+      }
+    },
+    "summary": {
+      "title": "Order Summary",
+      "discountPlaceholder": "Discount code",
+      "apply": "Apply",
+      "remove": "Remove",
+      "discountApplied": "✓ Discount code applied successfully",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "shippingNotice": "Enter shipping address",
+      "tax": "Tax",
+      "total": "Total",
+      "discountPending": "Will apply at checkout",
+      "discountConfirmed": "Applied",
+      "discountWillApply": "Discount will be applied when your order is placed."
+    }
+  },
+  "legal": {
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "LAST UPDATED: 31 MAY 2025",
+      "sections": {
+        "introduction": {
+          "title": "Introduction",
+          "content": "At JAWISTA CLUB, your privacy is important to us.<br><br>This policy explains how we collect, use, and protect your personal information."
+        },
+        "dataCollected": {
+          "title": "Data We Collect",
+          "content": "We may collect the following information:<ul><li>Name</li><li>Phone number</li><li>Delivery address</li><li>Order-related information</li></ul>"
+        },
+        "useOfData": {
+          "title": "Use of Data",
+          "content": "Your data is used strictly for:<ul><li>Processing orders</li><li>Delivery services</li><li>Customer support</li><li>Improving your experience</li></ul>"
+        },
+        "dataSharing": {
+          "title": "Data Sharing",
+          "content": "We do not share your personal data with third parties, except:<ul><li>With your consent</li><li>When required by law</li></ul>"
+        },
+        "security": {
+          "title": "Security",
+          "content": "We implement appropriate security measures to protect your data.<br><br>However, no method of transmission over the Internet is completely secure."
+        },
+        "externalLinks": {
+          "title": "External Links",
+          "content": "Our website may contain links to external websites.<br><br>We are not responsible for their privacy practices."
+        },
+        "consent": {
+          "title": "Consent",
+          "content": "By using our website, you agree to this Privacy Policy."
+        }
+      }
+    },
+    "refunds": {
+      "title": "Refund Policy",
+      "lastUpdated": "LAST UPDATED: 31 MAY 2025",
+      "sections": {
+        "generalConditions": {
+          "title": "General Conditions",
+          "content": "At JAWISTA CLUB, we aim to ensure customer satisfaction.<br><br>Products may be eligible for replacement or refund under the conditions outlined below."
+        },
+        "returnConditions": {
+          "title": "Return Conditions",
+          "content": "To be eligible for a return, the product must be:<ul><li>In its original condition</li><li>Unused</li><li>In its original packaging</li></ul>"
+        },
+        "timeframes": {
+          "title": "Timeframes",
+          "content": "<ul><li><strong>Refunds:</strong> processed within 3 days after approval</li><li><strong>Replacements:</strong> processed within 7 days</li></ul>"
+        },
+        "fullRefund": {
+          "title": "Full Refund",
+          "content": "A full refund will be issued if:<ul><li>The product received is different from the one ordered</li><li>The product has a major defect</li></ul>"
+        },
+        "returnsWithoutDefect": {
+          "title": "Returns Without Defect",
+          "content": "If the product is returned without any defect:<ul><li>A deduction of <strong>30%</strong> of the product price will be applied</li><li>Or a minimum of <strong>25 TND</strong></li></ul>"
+        },
+        "contact": {
+          "title": "Contact",
+          "content": "To request a return or refund, please contact us via:<ul><li>The \"Contact\" page</li><li>Our official contact details</li></ul>"
+        }
+      }
+    },
+    "shipping": {
+      "title": "Shipping Policy",
+      "lastUpdated": "LAST UPDATED: 31 MAY 2025",
+      "sections": {
+        "delivery": {
+          "title": "Delivery",
+          "content": "JAWISTA CLUB delivers across Tunisia.<br><br>Shipping details and estimated delivery times will be provided at checkout."
+        },
+        "processingTime": {
+          "title": "Processing Time",
+          "content": "Orders are typically processed within <strong>1–3 business days</strong> after confirmation."
+        },
+        "shippingRates": {
+          "title": "Shipping Rates",
+          "content": "Shipping rates are calculated at checkout based on your delivery location.<br><br>Free shipping promotions may apply during special campaigns."
+        },
+        "tracking": {
+          "title": "Tracking",
+          "content": "Once your order has been shipped, you will receive tracking information via email or SMS."
+        },
+        "lostDamaged": {
+          "title": "Lost or Damaged Packages",
+          "content": "If your package is lost or arrives damaged, please contact us immediately via the \"Contact\" page so we can assist you."
+        }
+      }
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "lastUpdated": "LAST UPDATED: 31 MAY 2025",
+      "sections": {
+        "introduction": {
+          "title": "Introduction",
+          "content": "Welcome to <strong>JAWISTA CLUB</strong>.<br><br>These Terms & Conditions govern your use of our website and all related services. By accessing this site, you agree to be bound by these terms.<br><br>We reserve the right to modify these Terms & Conditions at any time. Any changes will take effect immediately upon being published on the website."
+        },
+        "useOfWebsite": {
+          "title": "Use of the Website",
+          "content": "You must be at least <strong>18 years old</strong> to use this website, or under the supervision of a parent or legal guardian.<br><br>You are granted a limited, non-transferable, and non-commercial license to use this website for personal purposes only. Any misuse or unauthorized use is strictly prohibited."
+        },
+        "ordersPricing": {
+          "title": "Orders & Pricing",
+          "content": "We strive to ensure that all information on the website (products, pricing, availability) is accurate.<br><br>However, we reserve the right to:<ul><li>Refuse or cancel any order</li><li>Correct any errors in pricing or product descriptions</li></ul>This may occur even after an order has been confirmed."
+        },
+        "intellectualProperty": {
+          "title": "Intellectual Property",
+          "content": "All content on this website (logos, text, images, products, and design) is the exclusive property of <strong>JAWISTA CLUB</strong>.<br><br>Any reproduction or use without prior authorization is strictly prohibited."
+        },
+        "liability": {
+          "title": "Liability",
+          "content": "We are not responsible for any damage resulting from improper use of our products."
+        },
+        "termination": {
+          "title": "Termination",
+          "content": "We reserve the right to suspend or terminate access to the website at any time if these terms are violated."
+        },
+        "governingLaw": {
+          "title": "Governing Law",
+          "content": "These Terms & Conditions are governed by the laws of <strong>Tunisia</strong>.<br><br>Any disputes shall be subject to the jurisdiction of Tunisian courts."
+        }
+      }
+    }
+  },
+  "communityModal": {
+    "imageAlt": "Jawista community",
+    "closeAriaLabel": "Close modal",
+    "titleLine1": "BECOME PART OF THE",
+    "titleLine2": "JAWISTA COMMUNITY.",
+    "namePlaceholder": "NAME SURNAME",
+    "emailPlaceholder": "EMAIL",
+    "prefixPlaceholder": "CHOOSE YOUR CODE PREFIX",
+    "prefixHint": "Your code will look like: JWST-{{prefix}}-XXXXXX",
+    "prefixRequired": "Please choose a prefix.",
+    "prefixMinLength": "At least 3 characters.",
+    "prefixPattern": "Letters and numbers only.",
+    "nameError": "Please enter your full name.",
+    "emailError": "Please enter a valid email.",
+    "submitButton": "SUBMIT",
+    "submitting": "CREATING YOUR CODE...",
+    "successTitle": "Welcome to the community.",
+    "successSubtitle": "Here is your personal discount code.",
+    "discountLabel": "YOUR DISCOUNT CODE"
+  },
+  "footer": {
+    "siteIndex": {
+      "title": "Plan du site",
+      "links": {
+        "shopNow": "ACHETER",
+        "contactUs": "NOUS CONTACTER",
+        "aboutUs": "À PROPOS"
+      }
+    },
+    "social": {
+      "title": "Social Media",
+      "links": {
+        "instagram": "INSTAGRAM",
+        "phone": "(+216) 52 025 802"
+      }
+    },
+    "connect": {
+      "title": "Contact",
+      "links": {
+        "email": "INFO@JAWISTA.COM"
+      }
+    },
+    "legal": {
+      "title": "Mentions légales",
+      "links": {
+        "privacyPolicy": "POLITIQUE DE CONFIDENTIALITÉ",
+        "returns": "RETOURS",
+        "termsOfService": "CONDITIONS D'UTILISATION"
+      }
+    },
+    "copyright": "TOUS DROITS RÉSERVÉS - JAWISTA {{year}}"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "goBack": "Go back",
+    "goHome": "Go to homepage",
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you're looking for doesn't exist or has been moved."
+    }
+  },
+  "nav": {
+    "logoAlt": "Jawista Logo",
+    "ariaLabel": "Main navigation",
+    "menu": {
+      "close": "Close",
+      "text": "Menu",
+      "myCart": "My Cart",
+      "joinTheFam": "Join the fam",
+      "ariaLabel": "Open main menu",
+      "closeAriaLabel": "Close main menu",
+      "copyright": "© JAWISTA CLUB 2025",
+      "location": "TUNISIA"
+    },
+    "menuItems": {
+      "shop": "SHOP",
+      "home": "HOME",
+      "about": "ABOUT",
+      "contact": "CONTACT"
+    },
+    "socialLinks": {
+      "instagram": "INSTAGRAM"
+    },
+    "links": {
+      "shopNow": "Shop Now",
+      "cart": "Cart",
+      "shopNowAriaLabel": "Browse all products",
+      "cartAriaLabel": "Open shopping cart"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+<div class="cta-grid">
+  <ng-container *ngFor="let column of columns; let i = index; trackBy: trackByIndex">
+    <div
+      class="cta-column"
+      [ngClass]="{
+        'is-large': column.size === 'large',
+        'is-small': column.size === 'small',
+        'is-medium': column.size === 'medium'
+      }">
+
+      <a
+        [routerLink]="column.isExternal ? null : column.link"
+        [href]="column.isExternal ? column.link : null"
+        [attr.target]="column.isExternal ? '_blank' : null"
+        class="cta-title-link">
+        <app-section-title
+          class="cta-title"
+          level="h3"
+          size="card"
+          weight="medium"
+          alignment="left"
+          color="default"
+          [uppercase]="true">
+          {{ column.labelKey | transloco }}
+        </app-section-title>
+      </a>
+
+      <a
+        [routerLink]="column.isExternal ? null : column.link"
+        [href]="column.isExternal ? column.link : null"
+        [attr.target]="column.isExternal ? '_blank' : null"
+        class="cta-block"
+        (mousemove)="onMouseMove($event, i)"
+        (mouseenter)="onMouseEnter(i)"
+        (mouseleave)="onMouseLeave(i)"
+        #imageWrapper>
+
+        <div class="cta-img_wrap">
+          <img
+            [src]="column.image"
+            [alt]="column.labelKey | transloco"
+            class="cta-img"
+            loading="lazy"
+            (error)="onImageError($event, i)"
+          />
+          <div class="img-overlay"></div>
+        </div>
+
+        <app-cursor-hover-element
+          [referenceText]="column.ctaSubLabelKey | transloco"
+          [actionText]="column.ctaTextKey | transloco"
+          [visible]="hoveredIndex === i">
+        </app-cursor-hover-element>
+
+      </a>
+
+    </div>
+  </ng-container>
+</div>

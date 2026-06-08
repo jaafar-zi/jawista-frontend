@@ -1,0 +1,51 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:host {
+  display: block;
+  background-color: $color-white;
+}
+
+.community-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: $spacing-3xl 0;
+  text-align: center;
+
+  @include respond-to(md) {
+    padding: $spacing-2xl 0;
+  }
+
+  @include respond-to(sm) {
+    padding: $spacing-xl 0;
+  }
+}
+
+.community-section__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15rem;
+}
+
+::ng-deep .community-logo-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.community-section__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.community-section__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

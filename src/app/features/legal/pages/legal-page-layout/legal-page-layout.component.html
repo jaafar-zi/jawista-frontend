@@ -1,0 +1,52 @@
+<!-- legal-page-layout.component.html -->
+<div appNavLight="light" class="legal-page">
+
+  <!-- Fixed/Sticky Title Panel -->
+  <div class="legal-page__title-panel">
+    <div class="legal-page__title-sticky">
+      <app-section-title
+        level="h1"
+        size="display"
+        weight="normal"
+        color="light"
+        [uppercase]="false">
+        {{ config.pageTitleKey | transloco }}
+      </app-section-title>
+    </div>
+  </div>
+
+  <!-- Scrollable Content Panel -->
+  <div class="legal-page__content-panel">
+    <div class="legal-page__content-inner">
+
+      <!-- Last Updated -->
+      <div class="legal-page__updated">
+        {{ config.lastUpdatedKey | transloco }}
+      </div>
+
+      <!-- Sections -->
+      <div class="legal-page__sections">
+        <section
+          *ngFor="let section of config.sections; trackBy: trackBySectionId"
+          [id]="section.id"
+          class="legal-page__section">
+
+          <h3 class="legal-page__section-title">
+            {{ section.titleKey | transloco }}
+          </h3>
+
+          <div
+            class="legal-page__section-content"
+            [innerHTML]="section.contentKey | transloco">
+          </div>
+
+        </section>
+      </div>
+
+      <!-- Divider -->
+      <div class="legal-page__divider"></div>
+
+    </div>
+  </div>
+
+</div>

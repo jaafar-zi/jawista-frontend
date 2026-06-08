@@ -1,0 +1,31 @@
+// featured-products-section.component.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.featured-products__header {
+  @include flex-center;
+  padding: 0 $container-padding-x;
+  margin-bottom: $spacing-xl;
+
+  @include respond-to(sm) {
+    margin-bottom: $spacing-lg;
+    padding: 0 $container-padding-x-sm;
+  }
+}
+
+.featured-products__carousel {
+  width: 100%;
+  margin-bottom: $spacing-xl;
+
+  @include respond-to(sm) {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.featured-products__cta {
+  @include flex-center;
+}

@@ -1,0 +1,126 @@
+// product-info.component.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include respond-to(sm) {
+    gap: $spacing-md;
+  }
+
+  // ── Header ────────────────────────────────────────────────────────────
+  &__header-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: $spacing-sm;
+    align-items: start;
+
+    @include respond-to(sm) {
+      grid-template-columns: 1fr;
+      gap: $spacing-xs;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-normal;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    margin: 0;
+
+    @include respond-to(sm) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__price {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-normal;
+    letter-spacing: 0.02em;
+    text-align: right;
+
+    @include respond-to(sm) {
+      font-size: $font-size-xl;
+      text-align: left;
+    }
+  }
+
+  // ── Description ───────────────────────────────────────────────────────
+  &__description {
+    padding: $spacing-sm 0;
+    border-top: 1px solid $color-gray-200;
+  }
+
+  &__description-content {
+    @include text-description;
+    line-height: $line-height-relaxed;
+
+    ::ng-deep {
+      h4 {
+        font-weight: $font-weight-semibold;
+        margin-bottom: $spacing-xs;
+        font-size: $font-size-sm;
+      }
+
+      p {
+        margin-bottom: 0.75rem;
+        &:last-child { margin-bottom: 0; }
+      }
+    }
+  }
+
+  // ── Attributes ────────────────────────────────────────────────────────
+  &__attributes {
+    border-top: 1px solid $color-gray-200;
+  }
+
+  // ── Cart ──────────────────────────────────────────────────────────────
+  &__cart {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    padding-top: $spacing-sm;
+    border-top: 1px solid $color-gray-200;
+  }
+
+  &__cart-btn {
+    width: 100%;
+    padding: $spacing-sm;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background-color: $color-black;
+    color: $color-white;
+    border: none;
+    cursor: pointer;
+    @include transition-base(opacity);
+
+    &:hover:not(:disabled) {
+      opacity: 0.8;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    @include focus-visible-ring($color-black);
+    @include press-feedback;
+
+    @include reduced-motion {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.checkout-page {
+  &__error {
+    margin-bottom: $spacing-md;
+    padding: $spacing-sm $spacing-md;
+    border: 1px solid $color-red-600;
+    background-color: transparent;
+    font-size: $font-size-sm;
+    font-family: $font-family-primary;
+    color: $color-red-600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    animation: fadeIn $transition-duration-fast $transition-ease;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-$spacing-xs);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

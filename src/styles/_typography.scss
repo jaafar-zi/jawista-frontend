@@ -1,0 +1,212 @@
+/* =========================================
+   Design Tokens
+========================================= */
+:root {
+  --swatch--light:        #fff;
+  --swatch--dark:         #000;
+  --swatch--light-faded:  #818181;
+  --swatch--dark-faded:   #020202;
+  --swatch--transparent:  transparent;
+  --swatch--brand:        #050fff;
+  --swatch--brand-text:   var(--swatch--dark);
+  --swatch--faded-text:   #ccc;
+  --swatch--light-grey:   #f4f4f4;
+
+  --size--0rem:       0rem;
+  --size--0-125rem:   0.125rem;
+  --size--0-25rem:    0.25rem;
+  --size--0-375rem:   0.375rem;
+  --size--0-5rem:     0.5rem;
+  --size--0-75rem:    0.75rem;
+  --size--0-875rem:   0.875rem;
+  --size--1rem:       1rem;
+  --size--1-125rem:   1.125rem;
+  --size--1-25rem:    1.25rem;
+  --size--1-375rem:   1.375rem;
+  --size--1-5rem:     1.5rem;
+  --size--2rem:       2rem;
+  --size--2-5rem:     2.5rem;
+  --size--2-625rem:   2.625rem;
+  --size--3rem:       3rem;
+  --size--3-5rem:     3.5rem;
+  --size--4rem:       4rem;
+  --size--4-5rem:     4.5rem;
+  --size--5rem:       5rem;
+  --size--5-5rem:     5.5rem;
+  --size--6rem:       6rem;
+  --size--6-5rem:     6.5rem;
+  --size--7rem:       7rem;
+  --size--7-5rem:     7.5rem;
+  --size--8rem:       8rem;
+  --size--8-5rem:     8.5rem;
+  --size--9rem:       9rem;
+  --size--9-5rem:     9.5rem;
+  --size--10rem:      10rem;
+  --size--11rem:      11rem;
+  --size--12rem:      12rem;
+  --size--13rem:      13rem;
+  --size--14rem:      14rem;
+  --size--15rem:      15rem;
+  --size--16rem:      16rem;
+  --size--24rem:      24rem;
+  --size--28rem:      28rem;
+
+  --_spacing---space--1: var(--size--0-25rem);
+  --_spacing---space--2: var(--size--0-5rem);
+  --_spacing---space--3: var(--size--0-75rem);
+  --_spacing---space--4: var(--size--1rem);
+  --_spacing---space--5: var(--size--1-5rem);
+  --_spacing---space--6: var(--size--2rem);
+  --_spacing---space--7: var(--size--3rem);
+  --_spacing---space--8: var(--size--4rem);
+
+  --_spacing---section-space--none:   var(--size--0rem);
+  --_spacing---section-space--small:  var(--size--5rem);
+  --_spacing---section-space--main:   var(--size--7rem);
+  --_spacing---section-space--large:  var(--size--10rem);
+
+  // ── DM Sans as the single font family ──────────────────────────────────
+  --_typography---font--primary-family:   'DM Sans', -apple-system, BlinkMacSystemFont,
+                                           'Helvetica Neue', Arial, sans-serif;
+  // Secondary family also replaced with DM Sans
+  // (remove the line below and restore 'Instrument Serif' if you want a display serif)
+  --_typography---font--secondary-family: 'DM Sans', -apple-system, BlinkMacSystemFont,
+                                           'Helvetica Neue', Arial, sans-serif;
+
+  --_typography---font--primary-regular:  400;
+  --_typography---font--primary-medium:   500;
+  --_typography---font--primary-bold:     600;
+
+  // DM Sans optical-size axis (9..40) makes cap-height trims slightly different.
+  // These values are tuned for DM Sans at body sizes.
+  --_typography---font--primary-trim-top:     0.35em;
+  --_typography---font--primary-trim-bottom:  0.35em;
+  // Secondary now also uses DM Sans so same trim values apply
+  --_typography---font--secondary-trim-top:   0.35em;
+  --_typography---font--secondary-trim-bottom:0.35em;
+
+  --_typography---letter-spacing--0em:     0em;
+  --_typography---letter-spacing--0-03em: -0.03em;
+
+  --_typography---line-height--1:   1;
+  --_typography---line-height--1-1: 1.1;
+  --_typography---line-height--1-3: 1.3;
+  --_typography---line-height--1-5: 1.5;
+
+  --_typography---font-size--text-small: 0.875rem;
+  --_typography---font-size--text-main:  var(--size--1rem);
+  --_typography---font-size--text-large: var(--size--1-25rem);
+  --_typography---font-size--h6:         var(--size--1rem);
+  --_typography---font-size--h5:         var(--size--1-5rem);
+  --_typography---font-size--h4:         var(--size--1-375rem);
+  --_typography---font-size--h3:         var(--size--2-625rem);
+  --_typography---font-size--h2:         var(--size--2-625rem);
+  --_typography---font-size--h1:         var(--size--2-625rem);
+  --_typography---font-size--display:    var(--size--7rem);
+
+  --_typography---text-transform--none:       none;
+  --_typography---text-transform--uppercase:  uppercase;
+  --_typography---text-transform--capitalize: capitalize;
+  --_typography---text-transform--lowercase:  lowercase;
+}
+
+/* =========================================
+   Base app typography
+========================================= */
+body {
+  font-family:  var(--_typography---font--primary-family);
+  font-size:    var(--_typography---font-size--text-main);
+  font-weight:  var(--_typography---font--primary-regular);
+  line-height:  var(--_typography---line-height--1-3);
+  // DM Sans optical sizing — let the font auto-tune per size
+  font-optical-sizing: auto;
+  color:        var(--swatch--dark);
+  background:   var(--swatch--light);
+}
+
+/* =========================================
+   Utility text styles
+========================================= */
+.u-text-style-h1 {
+  font-family:    var(--_text-style---font-family);
+  font-size:      var(--_text-style---font-size);
+  line-height:    var(--_text-style---line-height);
+  font-weight:    var(--_text-style---font-weight);
+  letter-spacing: var(--_text-style---letter-spacing);
+
+  --_text-style---font-family:    var(--_typography---font--primary-family);
+  --_text-style---font-size:      var(--_typography---font-size--h1);
+  --_text-style---line-height:    var(--_typography---line-height--1);
+  --_text-style---font-weight:    var(--_typography---font--primary-medium);
+  --_text-style---letter-spacing: var(--_typography---letter-spacing--0-03em);
+  --_text-style---secondary-family:       var(--_typography---font--secondary-family);
+  --_text-style---margin-top:             var(--_spacing---space--7);
+  --_text-style---margin-bottom:          var(--_spacing---space--5);
+  --_text-style---text-transform:         var(--_typography---text-transform--none);
+  --_text-style---trim-top:               var(--_typography---font--primary-trim-top);
+  --_text-style---trim-bottom:            var(--_typography---font--primary-trim-bottom);
+  --_text-style---secondary-trim-top:     var(--_typography---font--secondary-trim-top);
+  --_text-style---secondary-trim-bottom:  var(--_typography---font--secondary-trim-bottom);
+
+  text-transform: var(--_text-style---text-transform);
+  text-wrap: balance;
+  display: flow-root;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.u-text-style-h2 {
+  font-family:    var(--_text-style---font-family);
+  font-size:      var(--_text-style---font-size);
+  line-height:    var(--_text-style---line-height);
+  font-weight:    var(--_text-style---font-weight);
+  letter-spacing: var(--_text-style---letter-spacing);
+
+  --_text-style---font-family:    var(--_typography---font--primary-family);
+  --_text-style---font-size:      var(--_typography---font-size--h2);
+  --_text-style---line-height:    var(--_typography---line-height--1);
+  --_text-style---font-weight:    var(--_typography---font--primary-bold);
+  --_text-style---letter-spacing: var(--_typography---letter-spacing--0-03em);
+  --_text-style---secondary-family:       var(--_typography---font--secondary-family);
+  --_text-style---margin-top:             var(--_spacing---space--7);
+  --_text-style---margin-bottom:          var(--_spacing---space--5);
+  --_text-style---text-transform:         var(--_typography---text-transform--uppercase);
+  --_text-style---trim-top:               var(--_typography---font--primary-trim-top);
+  --_text-style---trim-bottom:            var(--_typography---font--primary-trim-bottom);
+  --_text-style---secondary-trim-top:     var(--_typography---font--secondary-trim-top);
+  --_text-style---secondary-trim-bottom:  var(--_typography---font--secondary-trim-bottom);
+
+  text-transform: var(--_text-style---text-transform);
+  text-wrap: balance;
+  display: flow-root;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.u-text-style-h3 {
+  font-family:    var(--_text-style---font-family);
+  font-size:      var(--_text-style---font-size);
+  line-height:    var(--_text-style---line-height);
+  font-weight:    var(--_text-style---font-weight);
+  letter-spacing: var(--_text-style---letter-spacing);
+
+  --_text-style---font-family:    var(--_typography---font--primary-family);
+  --_text-style---font-size:      var(--_typography---font-size--h3);
+  --_text-style---line-height:    var(--_typography---line-height--1);
+  --_text-style---font-weight:    var(--_typography---font--primary-medium);
+  --_text-style---letter-spacing: var(--_typography---letter-spacing--0-03em);
+  --_text-style---secondary-family:       var(--_typography---font--secondary-family);
+  --_text-style---margin-top:             var(--_spacing---space--7);
+  --_text-style---margin-bottom:          var(--_spacing---space--4);
+  --_text-style---text-transform:         var(--_typography---text-transform--none);
+  --_text-style---trim-top:               var(--_typography---font--primary-trim-top);
+  --_text-style---trim-bottom:            var(--_typography---font--primary-trim-bottom);
+  --_text-style---secondary-trim-top:     var(--_typography---font--secondary-trim-top);
+  --_text-style---secondary-trim-bottom:  var(--_typography---font--secondary-trim-bottom);
+
+  text-transform: var(--_text-style---text-transform);
+  text-wrap: balance;
+  display: flow-root;
+  margin-top: 0;
+  margin-bottom: 0;
+}

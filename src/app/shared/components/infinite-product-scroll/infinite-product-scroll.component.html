@@ -1,0 +1,23 @@
+<div class="infinite-scroll-wrapper">
+  <div 
+    #scrollContainer
+    class="scroll-container"
+    [style.--columns]="columns"
+    (mouseenter)="pauseScroll()"
+    (mouseleave)="resumeScroll()"
+  >
+    <div class="products-grid">
+      <app-product-card-slide
+        *ngFor="let product of duplicatedProducts; trackBy: trackByProduct"
+        [product]="product"
+        [hoverImage]="product.hoverImage"
+        imageAspectRatio="portrait"
+        [currencySymbol]="currencySymbol"
+      ></app-product-card-slide>
+    </div>
+  </div>
+
+  <!-- Gradient Overlays for fade effect -->
+  <div class="gradient-overlay gradient-top"></div>
+  <div class="gradient-overlay gradient-bottom"></div>
+</div>

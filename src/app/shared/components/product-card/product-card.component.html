@@ -1,0 +1,124 @@
+<!-- Loading Skeleton -->
+<div *ngIf="loading" class="product-card-skeleton">
+  <div [class]="aspectRatioClass + ' image-skeleton mb-4'"></div>
+  <div class="text-skeleton mb-2" style="width: 80%"></div>
+  <div class="text-skeleton" style="width: 40%"></div>
+</div>
+
+<!-- Product Card -->
+<a
+  *ngIf="!loading"
+  [routerLink]="productLink"
+  class="product-card group cursor-pointer block"
+  [attr.aria-label]="('products.card.viewAriaLabel' | transloco : { name: product.name })"
+  (click)="onCardClick($event)"
+>
+  <!-- Product Image -->
+  <div
+    #imageWrapper
+    class="product-image-wrapper relative overflow-hidden bg-gray-50 mb-4"
+    [class]="aspectRatioClass"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+    (mousemove)="onMouseMove($event)"
+  >
+    <img
+      [src]="product.image"
+      [alt]="product.name"
+      class="size-full object-cover transition-all duration-500 ease-out group-hover:scale-110"
+      loading="lazy"
+      (error)="onImageError($event)"
+    />
+
+    <!-- Badge -->
+    <span
+      *ngIf="showBadge && badgeText"
+      [class]="badgeClasses"
+    >
+      {{ badgeText }}
+    </span>
+
+    <!-- Out of Stock Overlay -->
+    <div
+      *ngIf="!product.inStock"
+      class="absolute inset-0 bg-white/90 flex items-center justify-center"
+    >
+      <span class="text-xs uppercase tracking-widest text-gray-700">
+        {{ 'products.info.outOfStock' | transloco }}
+      </span>
+    </div>
+
+    <!-- Dark Overlay -->
+    <div
+      class="product-overlay"
+      [class.visible]="isHovering"
+    ></div>
+
+    <!-- Cursor Hover Element -->
+    <app-cursor-hover-element
+      [referenceText]="productReference"
+      [actionText]="viewProductText"
+      [visible]="isHovering"
+    ></app-cursor-hover-element>
+
+    <!-- Wishlist Button -->
+    <button
+      *ngIf="showWishlist && product.inStock"
+      (click)="onWishlistToggle($event)"
+      class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black hover:text-white z-10"
+      type="button"
+      [attr.aria-label]="(isWishlisted
+        ? 'products.card.removeFromWishlist'
+        : 'products.card.addToWishlist') | transloco"
+    >
+      <svg
+        class="w-5 h-5"
+        [class.fill-current]="isWishlisted"
+        [class.stroke-current]="!isWishlisted"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+        />
+      </svg>
+    </button>
+
+    <!-- Quick View Button -->
+    <button
+      *ngIf="showQuickView && product.inStock"
+      (click)="onQuickView($event)"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-6 py-3 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black hover:text-white z-10"
+      type="button"
+      [attr.aria-label]="'products.card.quickView' | transloco"
+    >
+      {{ 'products.card.quickView' | transloco }}
+    </button>
+
+    <!-- Add to Cart Button -->
+    <button
+      *ngIf="showAddToCart && product.inStock"
+      (click)="onAddToCart($event)"
+      class="absolute bottom-0 left-0 right-0 bg-black text-white px-4 py-3 text-xs uppercase tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300 hover:bg-gray-800 z-10"
+      type="button"
+      [attr.aria-label]="'products.card.addToCart' | transloco"
+    >
+      {{ 'products.card.addToCart' | transloco }}
+    </button>
+  </div>
+
+  <!-- Product Info -->
+  <div class="text-left">
+    <h3 class="text-xs uppercase tracking-wider mb-2 group-hover:opacity-60 transition-opacity">
+      {{ product.name }}
+    </h3>
+    <p class="text-xs font-medium">
+      {{ resolvedCurrency }} {{ formattedPrice }}
+    </p>
+  </div>
+</a>

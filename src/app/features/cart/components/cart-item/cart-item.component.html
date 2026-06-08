@@ -1,0 +1,76 @@
+<!-- features/cart/components/cart-item/cart-item.component.html -->
+
+<div class="flex gap-6 pb-8 border-b border-gray-200">
+
+  <!-- Product Image -->
+  <div class="w-24 h-24 bg-gray-50 shrink-0 overflow-hidden">
+    <img
+      [src]="item.image"
+      [alt]="item.name"
+      class="size-full object-cover"
+      loading="lazy"
+      appImageFallback
+    />
+  </div>
+
+  <!-- Product Info -->
+  <div class="flex-1 min-w-0">
+    <h3 class="text-sm uppercase tracking-wider mb-2">{{ item.name }}</h3>
+
+    <!-- Product Options -->
+    <div *ngIf="hasOptions" class="text-xs text-gray-500 mb-2">
+      <span *ngIf="item.size">
+        {{ 'cart.item.sizeLabel' | transloco: { size: item.size } }}
+      </span>
+      <span *ngIf="hasBothOptions" class="mx-2">|</span>
+      <span *ngIf="item.color">
+        {{ 'cart.item.colorLabel' | transloco: { color: item.color } }}
+      </span>
+    </div>
+
+    <p class="text-sm mb-4">
+      {{ item.price | currencyFormat: currencySymbol }}
+    </p>
+
+    <!-- Quantity Controls -->
+    <div class="flex items-center gap-4">
+      <button
+        (click)="onDecrease()"
+        class="w-8 h-8 border border-gray-300 hover:border-black transition-colors text-sm flex items-center justify-center"
+        [disabled]="isMinQuantity"
+        [class.opacity-50]="isMinQuantity"
+        [class.cursor-not-allowed]="isMinQuantity"
+        type="button"
+        [attr.aria-label]="'cart.item.decreaseQuantity' | transloco"
+      >
+        −
+      </button>
+
+      <span class="text-sm w-8 text-center">{{ item.quantity }}</span>
+
+      <button
+        (click)="onIncrease()"
+        class="w-8 h-8 border border-gray-300 hover:border-black transition-colors text-sm flex items-center justify-center"
+        type="button"
+        [attr.aria-label]="'cart.item.increaseQuantity' | transloco"
+      >
+        +
+      </button>
+    </div>
+  </div>
+
+  <!-- Price and Remove -->
+  <div class="text-right">
+    <p class="text-sm mb-4 font-medium">
+      {{ itemTotal | currencyFormat: currencySymbol }}
+    </p>
+    <button
+      (click)="onRemove()"
+      class="text-xs uppercase tracking-widest text-gray-500 hover:text-black transition-colors"
+      type="button"
+    >
+      {{ 'cart.item.remove' | transloco }}
+    </button>
+  </div>
+
+</div>

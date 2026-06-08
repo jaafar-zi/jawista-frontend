@@ -1,0 +1,50 @@
+<!-- product-list.component.html -->
+<app-section-container
+  padding="xl"
+  maxWidth="full"
+  variant="transparent">
+
+  <ng-container *ngIf="vm$ | async as vm">
+
+    <!-- ── Main Content ──────────────────────────────────────────────── -->
+    <main class="product-list__main">
+
+      <!-- ── Collection Header ─────────────────────────────────────────── -->
+      <app-products-collection-header
+        [collectionName]="'products.collectionHeader.name' | transloco"
+        [productCount]="vm.filteredProducts.length || 0"
+        [year]="currentYear">
+      </app-products-collection-header>
+
+      <!-- Loading -->
+      <div *ngIf="vm.isLoading" class="product-list__grid">
+        <app-product-card
+          *ngFor="let item of loadingSkeletonCount; trackBy: trackByIndex"
+          [loading]="true"
+          [product]="emptyProduct">
+        </app-product-card>
+      </div>
+
+      <!-- No Results -->
+      <app-empty-state
+        *ngIf="vm.hasNoResults"
+        [title]="'products.list.emptyState.title' | transloco"
+        [subtitle]="'products.list.emptyState.subtitle' | transloco"
+        [ctaLabel]="'products.list.emptyState.clearFilters' | transloco"
+        (ctaClick)="onClearFilters()">
+        <app-search-icon slot="icon" size="lg" />
+      </app-empty-state>
+
+      <!-- Products -->
+      <div *ngIf="vm.showProducts" class="product-list__grid">
+        <app-product-card
+          *ngFor="let product of vm.filteredProducts; trackBy: trackByProductId"
+          [product]="product">
+        </app-product-card>
+      </div>
+
+    </main>
+
+  </ng-container>
+
+</app-section-container>

@@ -1,0 +1,118 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'tokens' as *;
+
+:host {
+  display: block;
+}
+
+$community-thumbnail-width: 9rem;
+$community-thumbnail-height: 13rem;
+
+.community__header-content {
+  margin-bottom: 15rem;
+  
+  /* --- NEW: Logo width and padding logic --- */
+  width: 50%;
+  padding: $spacing-lg; /* Adapt to your preferred token (e.g., $spacing-md) */
+  box-sizing: border-box; 
+  
+  @include respond-to(sm) {
+    width: 100%; /* Optional: Makes it full width on mobile so it isn't too tiny */
+    margin-bottom: 5rem; /* Optional: adjust bottom margin for mobile */
+  }
+}
+
+/* --- NEW: Logo image styling --- */
+.community__logo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.community__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.community__section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  column-gap: $spacing-3xl;
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: $spacing-xl;
+  }
+
+  @include respond-to(sm) {
+    grid-template-columns: 1fr;
+    row-gap: $spacing-md;
+    padding: $spacing-lg 0;
+  }
+}
+
+.community__image-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include respond-to(sm) {
+    justify-content: center;
+  }
+}
+
+.community__image-wrapper {
+  width: $community-thumbnail-width;
+  height: $community-thumbnail-height;
+  max-width: none;
+  overflow: hidden;
+  
+  /* --- NEW: Default state is visible for mobile and touch devices --- */
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity $transition-duration-base $transition-cubic,
+    transform $transition-duration-base $transition-cubic;
+  will-change: transform, opacity;
+
+  /* --- NEW: Hover effects ONLY apply to devices with a mouse --- */
+  @media (hover: hover) {
+    opacity: 0;
+    transform: translateX(-2rem);
+
+    &--visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @include respond-to(md) {
+    width: 12rem;
+    height: 7.5rem;
+  }
+
+  @include respond-to(sm) {
+    width: 100%;
+    max-width: 20rem;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    /* Opacity and transform are already handled by the default state above */
+  }
+}
+
+.community__text-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $spacing-sm;
+  min-width: 0;
+}
+
+:host ::ng-deep .community__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

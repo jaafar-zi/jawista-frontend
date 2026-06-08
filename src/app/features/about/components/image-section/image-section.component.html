@@ -1,0 +1,30 @@
+<section
+  #imageContainer
+  class="image-section"
+  role="banner"
+  [attr.aria-label]="'about.imageSection.ariaLabel' | transloco : { centerText: (config.centerTextKey | transloco) }">
+
+  <app-image-with-fallback
+    [src]="resolvedImageUrl"
+    class="image" />
+
+  <div class="image-section-content" aria-live="polite">
+
+    <div
+      class="image-section-text image-section-text--left"
+      role="doc-subtitle">
+      {{ config.leftTextKey | transloco }}
+    </div>
+
+    <h1 class="image-section-text image-section-text--center">
+      {{ config.centerTextKey | transloco }}
+    </h1>
+
+    <div
+      class="image-section-text image-section-text--right"
+      role="doc-subtitle">
+      {{ config.rightTextKey | transloco }}
+    </div>
+
+  </div>
+</section>

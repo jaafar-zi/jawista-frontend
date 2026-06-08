@@ -1,0 +1,20 @@
+<!-- option-selector.component.html -->
+<div class="option-selector">
+
+  <p class="option-selector__label" *ngIf="label">
+    {{ label }}
+  </p>
+
+  <div class="option-selector__options">
+    <button
+      *ngFor="let option of options"
+      type="button"
+      class="option-selector__btn"
+      [class.option-selector__btn--selected]="selected === option"
+      [disabled]="disabled"
+      (click)="onSelect(option)">
+      {{ option }}
+    </button>
+  </div>
+
+</div>

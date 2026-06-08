@@ -1,0 +1,130 @@
+<section id="home-hero" class="hero-slider">
+
+  <!-- ── Desktop Navigation ────────────────────────────────────────── -->
+  <div class="hero-center is-desktop" *ngIf="!facade.isMobile">
+    <nav
+      class="hero-slider_nav-list"
+      role="navigation"
+      [attr.aria-label]="'home.heroSlider.navigation.navAriaLabel' | transloco">
+
+      <div
+        *ngFor="let slide of facade.slides; let i = index; trackBy: trackBySlideId"
+        class="hero-slider_nav-item"
+        [class.active]="facade.isSlideActive(i)">
+
+        <div class="slide-nav_layout">
+          <h2
+            class="hero-slider_num"
+            role="button"
+            tabindex="0"
+            [attr.aria-label]="'home.heroSlider.slides.goToSlideAriaLabel' | transloco : { index: i + 1 }"
+            [attr.aria-current]="facade.isSlideActive(i) ? 'true' : null"
+            (click)="facade.goToSlide(i)"
+            (keydown.enter)="facade.goToSlide(i)"
+            (keydown.space)="facade.goToSlide(i); $event.preventDefault()">
+            {{ facade.getSlideNumber(i) }}
+          </h2>
+          <div class="slide-nav_img">
+            <img
+              [src]="slide.thumbnail"
+              [alt]="'home.heroSlider.slides.thumbnailAlt' | transloco : { title: (slide.titleKey | transloco) }"
+              loading="lazy">
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <h2 class="hero-slider_scroll" aria-hidden="true">
+      {{ 'home.heroSlider.navigation.scroll' | transloco }}
+    </h2>
+  </div>
+
+  <!-- ── Mobile Navigation ─────────────────────────────────────────── -->
+  <div class="hero-center is-mobile" *ngIf="facade.isMobile">
+    <h2 class="hero-slider_num is-mobile" aria-hidden="true">
+      {{ facade.getSlideNumber(facade.currentSlide) }}
+    </h2>
+
+    <button
+      class="hero-slider_scroll is-next slider_btn"
+      (click)="facade.nextSlide()"
+      [attr.aria-label]="'home.heroSlider.navigation.nextSlideAriaLabel' | transloco"
+      type="button">
+      {{ 'home.heroSlider.navigation.nextButton' | transloco }}
+    </button>
+  </div>
+
+  <!-- ── Slides ────────────────────────────────────────────────────── -->
+  <div
+    class="hero-slider_wrap"
+    role="region"
+    [attr.aria-label]="'home.heroSlider.navigation.sliderRegionAriaLabel' | transloco">
+
+    <div class="hero-slider_list">
+      <div
+        *ngFor="let slide of facade.slides; let i = index; trackBy: trackBySlideId"
+        class="hero-slider_item"
+        [class.active]="facade.isSlideActive(i)"
+        [attr.aria-hidden]="!facade.isSlideActive(i)"
+        role="group"
+        [attr.aria-label]="'home.heroSlider.slides.slideAriaLabel' | transloco : { current: i + 1, total: facade.slides.length }">
+
+        <!-- Visual -->
+        <div class="hero-slide_visual u-cover-absolute">
+          <div class="g_visual_background"></div>
+
+          <img
+            [src]="slide.image"
+            class="hero-visual_el u-cover-absolute"
+            [alt]="slide.titleKey | transloco"
+            [loading]="i === 0 ? 'eager' : 'lazy'">
+
+          <div class="slide-overlay"></div>
+        </div>
+
+        <!-- Site Info -->
+        <div class="site-info">
+          <div class="hero-intro_copy">
+
+            <!-- Title (clickable, bigger) -->
+            <h1 class="hero-title is-light">
+              <a
+                textRotateX
+                [href]="slide.ctaLink"
+                (click)="facade.navigateTo(slide); $event.preventDefault()"
+                class="hero-title_link"
+                [target]="slide.isExternal ? '_blank' : '_self'"
+                [rel]="slide.isExternal ? 'noopener noreferrer' : null"
+                [attr.aria-label]="slide.titleKey | transloco">
+                <div
+                  [attr.data-text]="slide.titleKey | transloco"
+                  class="detail-wrap">
+                  <div class="detail-text">
+                    {{ slide.titleKey | transloco }}
+                  </div>
+                </div>
+              </a>
+            </h1>
+
+            <!-- Description (below, smaller) -->
+            <p class="hero-description">
+              {{ slide.ctaTextKey | transloco }}
+            </p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Live region for screen readers ────────────────────────────── -->
+  <div class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+    {{ 'home.heroSlider.slides.liveStatus' | transloco : {
+      current: facade.currentSlide + 1,
+      total: facade.slides.length
+    } }}
+  </div>
+
+</section>

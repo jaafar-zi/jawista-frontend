@@ -1,0 +1,57 @@
+// =============================================================================
+// Layout Utility Classes
+// =============================================================================
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.u-container {
+  width: 100%;
+  max-width: $container-max-width-full;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $container-padding-x;
+  padding-right: $container-padding-x;
+
+  @include respond-to(sm) {
+    padding-left: $container-padding-x-sm;
+    padding-right: $container-padding-x-sm;
+  }
+}
+
+.u-hidden {
+  @include respond-to(md) {
+    display: none !important;
+  }
+}
+
+.u-vflex-center-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.u-text-align-center {
+  text-align: center;
+}
+
+.text-width {
+  max-width: 42rem;
+}
+
+.m-top-none {
+  margin-top: 0;
+}
+
+.m-push-2 {
+  margin-top: var(--size-2-5, 2.5rem);
+}
+
+.p-contents {
+  p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+}

@@ -1,0 +1,27 @@
+// =============================================================================
+// Global Styles Entry Point
+// =============================================================================
+
+// 1. Tokens (CSS variables)
+@use 'tokens';
+
+// 2. Variables (SCSS variables)
+@use 'variables' as *;
+
+// 3. Mixins
+@use 'mixins' as *;
+
+// 4. Reset & base typography
+@use 'reset';
+
+// 5. Grid system
+@use 'grid';
+
+// 6. Typography utilities
+@use 'typography';
+
+// 7. Layout utilities
+@use 'layout-utilities';
+
+// 8. Utilities (Tailwind-like)
+@use 'utilities';

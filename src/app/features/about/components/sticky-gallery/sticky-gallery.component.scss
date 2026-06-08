@@ -1,0 +1,182 @@
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.sticky-component {
+  --card-width: 930px;
+  --gallery-max-width: 2000px;
+
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+/* Large desktop -> exact requested size */
+@media (max-width: 1399px) {
+  .sticky-component {
+    --card-width: 780px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .sticky-component {
+    --card-width: 640px;
+  }
+}
+
+@media (max-width: 991px) {
+  .sticky-component {
+    --card-width: min(540px, calc(100vw - 2rem));
+  }
+}
+
+@media (max-width: 640px) {
+  .sticky-component {
+    --card-width: min(88vw, 420px);
+  }
+}
+
+.background-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+  pointer-events: none;
+
+  ::ng-deep {
+    font-size: clamp(3rem, 12vw, 10rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    opacity: 0.08;
+    text-transform: uppercase;
+
+    svg,
+    h2,
+    .wordmark {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.diamond-gallery {
+  position: relative;
+  width: min(100%, var(--gallery-max-width));
+  height: 100%;
+  margin: 0 auto;
+  padding: clamp(1rem, 2vw, 2rem);
+  box-sizing: border-box;
+}
+
+.diamond-item {
+  position: absolute;
+  width: var(--card-width);
+  aspect-ratio: 930 / 530;
+  box-sizing: border-box;
+  will-change: transform, opacity;
+  transform-origin: center center;
+
+  &__wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__img-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    background: #111;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+/* Position only */
+.diamond-item--top-left {
+  top: 5%;
+  left: 5%;
+}
+
+.diamond-item--center-left {
+  top: 22%;
+  left: 3%;
+}
+
+.diamond-item--top-right {
+  top: 12%;
+  right: 4%;
+}
+
+.diamond-item--center-bottom {
+  bottom: 8%;
+  right: 8%;
+}
+
+@media (max-width: 1199px) {
+  .diamond-item--top-left {
+    top: 4%;
+    left: 3%;
+  }
+
+  .diamond-item--center-left {
+    top: 31%;
+    left: 4%;
+  }
+
+  .diamond-item--top-right {
+    top: 14%;
+    right: 3%;
+  }
+
+  .diamond-item--center-bottom {
+    bottom: 6%;
+    right: 4%;
+  }
+}
+
+@media (max-width: 640px) {
+  .diamond-item--top-left {
+    top: 2%;
+    left: 2%;
+  }
+
+  .diamond-item--center-left {
+    top: 24%;
+    left: -2%;
+  }
+
+  .diamond-item--top-right {
+    top: 14%;
+    right: -2%;
+  }
+
+  .diamond-item--center-bottom {
+    bottom: 4%;
+    right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diamond-item {
+    will-change: auto;
+    transition: none !important;
+  }
+}

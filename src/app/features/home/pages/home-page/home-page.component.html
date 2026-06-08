@@ -1,0 +1,48 @@
+<div class="min-h-screen bg-white home-page">
+
+  <!-- Hero Section -->
+  <section appNavLight="light" class="home-page__section">
+    <app-hero-slider></app-hero-slider>
+  </section>
+
+  <!-- Dark Sections Group -->
+  <app-section-container
+    appNavLight="dark"
+    padding="none"
+    maxWidth="none"
+    variant="transparent"
+    class="home-page__section"
+  >
+    <div class="home-page__dark-group">
+
+      <div class="home-page__gap-after">
+        <app-brand-section></app-brand-section>
+      </div>
+
+        <ng-container *ngIf="newArrivals$ | async as newArrivals">
+          <div class="home-page__gap-after">
+            <app-featured-products-section
+              [products]="newArrivals"
+              [scrollSpeed]="scrollSpeed"
+              [currencySymbol]="currencySymbol">
+            </app-featured-products-section>
+          </div>
+        </ng-container>
+
+      <div class="home-page__gap-after">
+        <app-about-section></app-about-section>
+      </div>
+
+      <app-three-column-section></app-three-column-section>
+
+      <app-community-section></app-community-section>
+
+    </div>
+  </app-section-container>
+
+  <!-- Media Showcase Slider Section -->
+  <section appNavLight="light" class="home-page__section">
+    <app-media-showcase-slider></app-media-showcase-slider>
+  </section>
+
+</div>

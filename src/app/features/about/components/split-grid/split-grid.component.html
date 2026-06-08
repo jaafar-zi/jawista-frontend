@@ -1,0 +1,24 @@
+<div class="split-grid-container">
+  <!-- Left: static image -->
+  <div class="static-section">
+    <app-image-with-fallback
+      [src]="mainImage.url"
+      class="static-image-wrapper"
+      customClass="fill-image">
+    </app-image-with-fallback>
+  </div>
+
+  <!-- Right: flickthrough -->
+  <div class="flickthrough-section">
+    <div class="flickthrough-container" appFlickthroughHover>
+      @for (image of flickthroughImages; track image.url) {
+        <app-image-with-fallback
+          appFlickthroughImgHover
+          [src]="image.url"
+          class="flickthrough-image-wrapper"
+          customClass="fill-image">
+        </app-image-with-fallback>
+      }
+    </div>
+  </div>
+</div>

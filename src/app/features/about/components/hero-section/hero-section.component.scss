@@ -1,0 +1,186 @@
+.hero-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background-color: black;
+  color: #fff;
+  padding-top: 50svh;
+  padding-bottom: 10rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 4rem 2rem;
+  }
+}
+
+.left-side {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+
+  @media (min-width: 1025px) {
+    width: 50%;
+  }
+
+  @media (max-width: 1024px) {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.logo-wrapper {
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  width: 100%;
+}
+
+.logo-wrapper app-image-with-fallback,
+.logo-wrapper .nav-logo_img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.logo-wrapper svg,
+.logo-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  position: relative;
+
+  @media (max-width: 1024px) {
+    justify-content: center;
+    padding: 2rem;
+  }
+}
+
+.content-wrapper {
+  max-width: 42rem;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  transition: height 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (max-width: 1024px) {
+    text-align: center;
+  }
+}
+
+.headline {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition:
+    opacity 300ms ease,
+    visibility 300ms ease,
+    transform 300ms ease;
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .headline-text {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0;
+
+    @media (min-width: 768px) {
+      font-size: 3rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 3.75rem;
+    }
+
+    @media (min-width: 1280px) {
+      font-size: 4rem;
+    }
+  }
+}
+
+.description {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition:
+    opacity 300ms ease,
+    visibility 300ms ease,
+    transform 300ms ease;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  @media (max-width: 1024px) {
+    text-align: left;
+  }
+
+  .description-text {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin: 0;
+
+    @media (min-width: 768px) {
+      font-size: 0.95rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+  }
+
+  .description-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-right: 1.25rem;
+    white-space: nowrap;
+    opacity: 0.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-wrapper,
+  .headline,
+  .description {
+    transition: none;
+  }
+}

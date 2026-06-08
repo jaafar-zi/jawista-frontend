@@ -1,0 +1,17 @@
+<!-- section-container.component.html -->
+<section
+  [class]="[
+    'section-container',
+    'section-container--bg-' + variant,
+    'section-container--pad-' + padding
+  ].join(' ')"
+  [attr.aria-label]="ariaLabel || null">
+
+  <div
+    class="section-container__inner"
+    [class.section-container__inner--centered]="centered"
+    [class]="'section-container__inner section-container__inner--' + maxWidth">
+    <ng-content />
+  </div>
+
+</section>

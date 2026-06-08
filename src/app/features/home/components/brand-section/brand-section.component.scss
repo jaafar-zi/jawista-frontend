@@ -1,0 +1,74 @@
+// brand-section.component.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:host {
+  display: block;
+  background-color: var(--color-background, #f5f5f5);
+}
+
+.brand-section__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-2xl;
+  align-items: start;
+
+  @include respond-to(md) {
+    gap: $spacing-xl;
+  }
+
+  @include respond-to(sm) {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+}
+
+.brand-section__logo-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.brand-section__logo {
+  width: auto;
+  height: 100px;
+  max-width: 100%;
+
+  @include respond-to(md) {
+    height: 120px;
+  }
+
+  @include respond-to(sm) {
+    height: 100px;
+  }
+}
+
+.brand-section__text-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.brand-section__text {
+  font-family: $font-family-primary;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-none;
+  color: $color-black;
+  margin: 0;
+  max-width: 900px;
+
+  @include respond-to(md) {
+    font-size: 1.875rem;
+  }
+
+  @include respond-to(sm) {
+    font-size: $font-size-xl;
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  @include respond-to(xs) {
+    font-size: $font-size-lg;
+  }
+}

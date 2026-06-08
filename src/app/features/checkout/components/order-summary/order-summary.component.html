@@ -1,0 +1,165 @@
+<div class="order-summary">
+  <div class="order-summary__sticky">
+
+    <!-- ─── Title ──────────────────────────────────────────────── -->
+    <app-section-title
+      level="h2"
+      size="label"
+      weight="bold">
+      {{ 'checkout.summary.title' | transloco }}
+    </app-section-title>
+
+    <!-- ─── Cart Items ─────────────────────────────────────────── -->
+    <div class="order-summary__items">
+      <div
+        *ngFor="let item of cartItems; trackBy: trackByItemId"
+        class="order-summary__item">
+
+        <div class="order-summary__item-image">
+          <img
+            [src]="item.image"
+            [alt]="item.name"
+            loading="lazy" />
+          <div class="order-summary__item-qty">
+            {{ item.quantity }}
+          </div>
+        </div>
+
+        <div class="order-summary__item-info">
+          <p class="order-summary__item-name">{{ item.name }}</p>
+          <p
+            *ngIf="item.size || item.color"
+            class="order-summary__item-variant">
+            <span *ngIf="item.size">{{ item.size }}</span>
+            <span *ngIf="item.size && item.color"> | </span>
+            <span *ngIf="item.color">{{ item.color }}</span>
+          </p>
+        </div>
+
+        <p class="order-summary__item-price">
+          {{ currencySymbol }} {{ formatPrice(item.price * item.quantity) }}
+        </p>
+      </div>
+    </div>
+
+    <!-- ─── Discount Code ──────────────────────────────────────── -->
+    <div class="order-summary__discount">
+
+      <!-- Input Row -->
+      <div class="order-summary__discount-row">
+
+        <!-- Code Input (idle or failed state) -->
+        <app-form-input
+          *ngIf="showDiscountInput"
+          type="text"
+          [formControl]="discountCodeControl"
+          [placeholder]="'checkout.summary.discountPlaceholder' | transloco">
+        </app-form-input>
+
+        <!-- Applied Code Badge (valid state) -->
+        <div
+          *ngIf="hasValidDiscount"
+          class="order-summary__discount-applied">
+          <span class="order-summary__discount-code">
+            {{ appliedCode }}
+          </span>
+          <span class="order-summary__discount-check">✓</span>
+        </div>
+
+        <!-- Validating State -->
+        <div
+          *ngIf="isValidating"
+          class="order-summary__discount-validating">
+          {{ discountCodeControl.value }}
+        </div>
+
+        <!-- Apply Button -->
+        <app-button
+          *ngIf="showDiscountInput"
+          variant="outline"
+          [disabled]="!isCodeEntered || isValidating"
+          [loading]="isValidating"
+          (clicked)="onApplyDiscount()">
+          {{ 'checkout.summary.apply' | transloco }}
+        </app-button>
+
+        <!-- Remove Button -->
+        <app-button
+          *ngIf="hasValidDiscount"
+          variant="outline"
+          (clicked)="onRemoveDiscount()">
+          {{ 'checkout.summary.remove' | transloco }}
+        </app-button>
+      </div>
+
+      <!-- Error Message -->
+      <p
+        *ngIf="discountError"
+        class="order-summary__discount-error">
+        {{ discountError }}
+      </p>
+
+      <!-- Success Message with discount details -->
+      <p
+        *ngIf="hasValidDiscount && summary.discount > 0"
+        class="order-summary__discount-success">
+        {{ 'checkout.summary.discountApplied' | transloco }}
+        (-{{ currencySymbol }} {{ formatPrice(summary.discount) }})
+      </p>
+
+    </div>
+
+    <!-- ─── Totals ─────────────────────────────────────────────── -->
+    <div class="order-summary__totals">
+
+      <!-- Subtotal -->
+      <div class="order-summary__line">
+        <span>{{ 'checkout.summary.subtotal' | transloco }}</span>
+        <span>{{ currencySymbol }} {{ formatPrice(summary.subtotal) }}</span>
+      </div>
+
+      <!-- Discount (shown only when applied) -->
+      <div
+        *ngIf="summary.discount > 0"
+        class="order-summary__line order-summary__line--discount">
+        <span>{{ 'checkout.summary.discount' | transloco }}</span>
+        <span class="order-summary__discount-amount">
+          -{{ currencySymbol }} {{ formatPrice(summary.discount) }}
+        </span>
+      </div>
+
+      <!-- Shipping -->
+      <div class="order-summary__line">
+        <span>{{ 'checkout.summary.shipping' | transloco }}</span>
+        <span *ngIf="summary.shipping > 0">
+          {{ currencySymbol }} {{ formatPrice(summary.shipping) }}
+        </span>
+        <span
+          *ngIf="summary.shipping === 0"
+          class="order-summary__line-free">
+          {{ 'checkout.summary.freeShipping' | transloco }}
+        </span>
+      </div>
+
+      <!-- Tax (shown only when > 0) -->
+      <div
+        *ngIf="summary.tax > 0"
+        class="order-summary__line">
+        <span>{{ 'checkout.summary.tax' | transloco }}</span>
+        <span>{{ currencySymbol }} {{ formatPrice(summary.tax) }}</span>
+      </div>
+
+    </div>
+
+    <!-- ─── Total ──────────────────────────────────────────────── -->
+    <div class="order-summary__total">
+      <span class="order-summary__total-label">
+        {{ 'checkout.summary.total' | transloco }}
+      </span>
+      <span class="order-summary__total-value">
+        {{ currencySymbol }} {{ formatPrice(summary.total) }}
+      </span>
+    </div>
+
+  </div>
+</div>

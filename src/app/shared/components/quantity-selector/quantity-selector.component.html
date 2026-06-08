@@ -1,0 +1,28 @@
+<!-- quantity-selector.component.html -->
+<div class="quantity-selector">
+
+  <button
+    type="button"
+    class="quantity-selector__btn"
+    [disabled]="!canDecrease"
+    [class.quantity-selector__btn--disabled]="!canDecrease"
+    [attr.aria-label]="'products.quantitySelector.decrease' | transloco"
+    (click)="decrease()">
+    −
+  </button>
+
+  <span class="quantity-selector__value" aria-live="polite">
+    {{ quantity }}
+  </span>
+
+  <button
+    type="button"
+    class="quantity-selector__btn"
+    [disabled]="!canIncrease"
+    [class.quantity-selector__btn--disabled]="!canIncrease"
+    [attr.aria-label]="'products.quantitySelector.increase' | transloco"
+    (click)="increase()">
+    +
+  </button>
+
+</div>

@@ -1,0 +1,76 @@
+<div class="product-detail">
+  <ng-container *ngIf="isLoading$ | async">
+    <div class="product-detail__container">
+      <div class="product-detail__grid">
+        <div class="product-detail__skeleton-gallery">
+          <app-skeleton variant="square" />
+          <div class="product-detail__skeleton-thumbs">
+            <app-skeleton *ngFor="let i of [1, 2, 3, 4]" variant="square" />
+          </div>
+        </div>
+        <div class="product-detail__skeleton-info">
+          <app-skeleton variant="text" width="75%" height="2rem" />
+          <app-skeleton variant="text" width="25%" height="1.5rem" />
+          <app-skeleton variant="rect" width="100%" height="5rem" />
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="(error$ | async) as error">
+    <ng-container *ngIf="!(isLoading$ | async)">
+      <div class="product-detail__container">
+        <div class="product-detail__error">
+          <app-status-message
+            variant="error"
+            [message]="error">
+          </app-status-message>
+          <app-button
+            [routerLink]="productsRoute"
+            variant="outline">
+            {{ 'products.detail.backToProducts' | transloco }}
+          </app-button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="!(isLoading$ | async) && product">
+    <div class="product-detail__container">
+      <div class="product-detail__grid">
+        <div class="product-detail__gallery">
+          <app-product-gallery
+            [images]="product.images || [product.image]"
+            [productName]="product.name">
+          </app-product-gallery>
+        </div>
+
+        <div class="product-detail__info">
+          <div class="product-detail__sticky">
+            <app-status-message
+              *ngIf="selectSizeError$ | async"
+              variant="error"
+              [message]="'products.detail.selectSizeError' | transloco">
+            </app-status-message>
+
+            <app-product-info
+              [product]="product"
+              [selectedSize]="selectedSize"
+              [selectedColor]="selectedColor"
+              [isAddingToCart]="(isAddingToCart$ | async) ?? false"
+              [addToCartSuccess]="(addToCartSuccess$ | async) ?? false"
+              (sizeChange)="onSizeChange($event)"
+              (colorChange)="onColorChange($event)"
+              (addToCart)="onAddToCart()">
+            </app-product-info>
+
+            <app-quantity-selector
+              [quantity]="quantity"
+              (quantityChange)="onQuantityChange($event)">
+            </app-quantity-selector>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

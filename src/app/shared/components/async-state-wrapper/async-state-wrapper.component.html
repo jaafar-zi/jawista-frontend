@@ -1,0 +1,21 @@
+<!-- async-state-wrapper.component.html -->
+
+<!-- Loading State -->
+<ng-container *ngIf="isLoading">
+  <ng-content select="[slot=loading]" />
+</ng-container>
+
+<!-- Error State -->
+<ng-container *ngIf="hasError && !isLoading">
+  <ng-content select="[slot=error]" />
+</ng-container>
+
+<!-- Empty State -->
+<ng-container *ngIf="isEmpty && !isLoading && !hasError">
+  <ng-content select="[slot=empty]" />
+</ng-container>
+
+<!-- Content -->
+<ng-container *ngIf="!isLoading && !hasError && !isEmpty">
+  <ng-content />
+</ng-container>

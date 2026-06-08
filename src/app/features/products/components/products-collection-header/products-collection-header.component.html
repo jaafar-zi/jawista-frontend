@@ -1,0 +1,56 @@
+<!-- src/app/features/products/components/collection-header/products-collection-header.component.html -->
+
+<app-section-container
+  padding="none"
+  maxWidth="none"
+  variant="transparent">
+
+  <div class="collection-header">
+
+    <!-- Left: Label -->
+    <div class="collection-header__col">
+      <app-section-title
+        level="h2"
+        size="card"
+        weight="medium"
+        alignment="left"
+        color="default"
+        [uppercase]="true">
+        {{ 'products.collectionHeader.allProducts' | transloco }}
+      </app-section-title>
+    </div>
+
+    <!-- Center: Collection Name + Year (two lines) -->
+    <div class="collection-header__col collection-header__col--center">
+      <div class="collection-header__center-content">
+        <app-section-title
+          level="h1"
+          size="card"
+          weight="medium"
+          alignment="center"
+          color="default"
+          [uppercase]="true">
+          {{ collectionName }}
+        </app-section-title>
+        <app-section-title
+          level="h1"
+          size="card"
+          weight="medium"
+          alignment="center"
+          color="default"
+          [uppercase]="true">
+          ORGC <span class="collection-header__year">&copy;{{ year }}</span>
+        </app-section-title>
+      </div>
+    </div>
+
+    <!-- Right: Product Count -->
+    <div class="collection-header__col">
+      <span class="collection-header__count">
+        ({{ productCount }})
+      </span>
+    </div>
+
+  </div>
+
+</app-section-container>

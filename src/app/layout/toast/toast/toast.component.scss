@@ -1,0 +1,98 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+$toast-min-width:  20rem;
+$toast-max-width:  26rem;
+$toast-padding-y:  $spacing-sm;
+$toast-padding-x:  $spacing-md;
+$toast-gap:        $spacing-xs;
+$toast-font-size:  $font-size-sm;
+$toast-bottom:     $spacing-lg;
+$toast-right:      $spacing-lg;
+
+$toast-types: (
+  success: ($color-green-600, $color-white),
+  error:   ($color-red-600,   $color-white),
+  warning: ($color-yellow-400,$color-black),
+  info:    ($color-gray-800,  $color-white),
+);
+
+:host {
+  display: block;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: $toast-bottom;
+  right: $toast-right;
+  z-index: $z-modal;
+  display: flex;
+  flex-direction: column;
+  gap: $toast-gap;
+  pointer-events: none;
+
+  @include respond-to(sm) {
+    right: $spacing-sm;
+    left: $spacing-sm;
+    bottom: $spacing-sm;
+  }
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  min-width: $toast-min-width;
+  max-width: $toast-max-width;
+  padding: $toast-padding-y $toast-padding-x;
+  pointer-events: all;
+  @include fade-in-up(0.25s, 8px);
+
+  @include respond-to(sm) {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  // ── Variants via map ──────────────────────────────────────────
+  @each $type, $values in $toast-types {
+    &--#{$type} {
+      background-color: nth($values, 1);
+      color:            nth($values, 2);
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    font-size: 1.125rem;
+    line-height: 1;
+    margin-top: 0.1em;
+  }
+
+  &__message {
+    flex: 1;
+    margin: 0;
+    font-size: $toast-font-size;
+    font-family: $font-family-primary;
+    line-height: $line-height-normal;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: $font-size-sm;
+    font-family: $font-family-primary;
+    color: inherit;
+    opacity: 0.7;
+    line-height: 1;
+    @include transition-base(opacity);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

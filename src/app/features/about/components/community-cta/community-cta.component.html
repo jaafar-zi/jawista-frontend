@@ -1,0 +1,60 @@
+<!-- community-cta.component.html -->
+<div class="u-container">
+  <div class="or-info m-top-none">
+
+    <div class="split-grid split-grid--desktop">
+      <div class="split-col split-col--3 u-hidden" aria-hidden="true"></div>
+
+      <div class="split-col split-col--6 text-width">
+        <div class="u-vflex-center-top u-text-align-center">
+          <div class="body-upper community-cta__text">
+            <p>{{ 'about.communityCta.description' | transloco }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="split-col split-col--3 u-hidden" aria-hidden="true"></div>
+    </div>
+
+    <div class="text-btn__wrap m-push-2">
+      <a
+        [href]="instagramUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="orgc-detail"
+        [attr.aria-label]="'about.communityCta.ctaAriaLabel' | transloco">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 5 16"
+          fill="none"
+          class="detail-svg"
+          aria-hidden="true">
+          <path
+            d="M4.5 1H4C2.34315 1 1 2.34315 1 4V12C1 13.6569 2.34315 15 4 15H4.5"
+            stroke="currentColor" />
+        </svg>
+
+        <div
+          class="detail-wrap body-upper"
+          [attr.data-text]="'about.communityCta.ctaLabel' | transloco">
+          <div class="detail-text">
+            {{ 'about.communityCta.ctaLabel' | transloco }}
+          </div>
+        </div>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 5 16"
+          fill="none"
+          class="detail-svg"
+          aria-hidden="true">
+          <path
+            d="M0.5 15L1 15C2.65685 15 4 13.6569 4 12L4 4C4 2.34315 2.65686 1 1 1L0.500001 1"
+            stroke="currentColor" />
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</div>

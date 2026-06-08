@@ -1,0 +1,61 @@
+// option-selector.component.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.option-selector {
+  padding: $spacing-sm 0;
+
+  &__label {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+    color: $color-black;
+  }
+
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+  }
+
+  &__btn {
+    padding: 0.75rem 1.5rem;
+    font-size: $font-size-base;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid $color-gray-300;
+    background: $color-white;
+    color: $color-black;
+    cursor: pointer;
+    transition: all $transition-duration-fast $transition-ease;
+
+    &:hover:not(:disabled) {
+      border-color: $color-black;
+    }
+
+    &--selected {
+      background-color: $color-black;
+      color: $color-white;
+      border-color: $color-black;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    @include focus-visible-ring($color-black);
+    @include press-feedback;
+
+    @include reduced-motion {
+      transition: none;
+    }
+  }
+}

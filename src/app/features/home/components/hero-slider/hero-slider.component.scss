@@ -1,0 +1,474 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+$hero-breakpoint-mobile: $breakpoint-sm;
+
+$hero-side-padding: var(--size-2-5, 2.5rem);
+$hero-side-padding-mobile: var(--size-1-5, 1.5rem);
+$hero-nav-gap: 0.75rem;
+$hero-copy-gap: 1rem;
+$hero-copy-gap-mobile: 1.25rem;
+$hero-site-info-bottom: 5rem;
+$hero-site-info-bottom-mobile: 110px;
+$hero-mobile-width-offset: 48px;
+$hero-thumb-width: 80px;
+$hero-thumb-hover-height: 100px;
+
+$hero-transition-duration: 500ms;
+$hero-image-duration: 500ms;
+$hero-text-delay: 120ms;
+$hero-image-start-scale: 1.02;
+
+// ── Utility overrides ───────────────────────────────────────────────
+.u-cover-absolute {
+  @include cover-absolute;
+}
+
+.sr-only {
+  @include sr-only;
+}
+
+// ── Main container ──────────────────────────────────────────────────
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: $color-black;
+  isolation: isolate;
+}
+
+// ── Center navigation ───────────────────────────────────────────────
+.hero-center {
+  &.is-desktop {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    max-width: $container-max-width-full;
+    z-index: $z-sticky;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 $hero-side-padding;
+    pointer-events: none;
+  }
+
+  &.is-mobile {
+    display: none;
+  }
+}
+
+// ── Nav list ────────────────────────────────────────────────────────
+.hero-slider_nav-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  pointer-events: none;
+}
+
+.hero-slider_nav-item {
+  flex: 1;
+  position: relative;
+  pointer-events: none;
+
+  &.active {
+    .hero-slider_num {
+      font-size: 32px;
+      font-weight: $font-weight-normal;
+    }
+  }
+
+  &:hover {
+    .slide-nav_img {
+      height: $hero-thumb-hover-height;
+      opacity: 1;
+    }
+  }
+}
+
+.slide-nav_layout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $hero-nav-gap;
+  pointer-events: all;
+}
+
+// ── Slide number ────────────────────────────────────────────────────
+.hero-slider_num {
+  display: inline-block;
+  font-size: 24px;
+  font-style: italic;
+  color: $color-white;
+  font-weight: 300;
+  margin: 0;
+  line-height: $line-height-none;
+  cursor: pointer;
+  pointer-events: all;
+  transition:
+    font-size $transition-duration-fast $transition-ease,
+    font-weight $transition-duration-fast $transition-ease;
+
+  @include focus-visible-ring(rgba(255, 255, 255, 0.8));
+
+  &.is-mobile {
+    font-size: 48px;
+    color: $color-white;
+    font-style: italic;
+    margin: 0;
+    cursor: default;
+    pointer-events: none;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+}
+
+// ── Thumbnail ───────────────────────────────────────────────────────
+.slide-nav_img {
+  width: $hero-thumb-width;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    height $transition-duration-fast $transition-ease,
+    opacity $transition-duration-fast $transition-ease;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+  pointer-events: none;
+
+  img {
+    @include cover-image;
+  }
+}
+
+// ── Scroll / Next ───────────────────────────────────────────────────
+.hero-slider_scroll {
+  font-size: $font-size-sm;
+  font-style: italic;
+  color: $color-white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  user-select: none;
+  pointer-events: none;
+  margin: 0;
+  flex-shrink: 0;
+
+  &.is-next {
+    pointer-events: all;
+    cursor: pointer;
+    padding: 12px 24px;
+    background: rgba($color-white, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    border: 1px solid rgba($color-white, 0.2);
+    transition:
+      background $transition-duration-fast $transition-ease,
+      border-color $transition-duration-fast $transition-ease,
+      transform $transition-duration-fast $transition-ease;
+    font-weight: 300;
+    writing-mode: initial;
+    transform: none;
+    font-style: italic;
+
+    &:hover {
+      background: rgba($color-white, 0.2);
+      border-color: rgba($color-white, 0.3);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+// ── Slider wrap ─────────────────────────────────────────────────────
+.hero-slider_wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slider_list {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+// ── Slide item ──────────────────────────────────────────────────────
+.hero-slider_item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity $hero-transition-duration $transition-ease-in-out;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+    z-index: $z-raised;
+
+    .hero-visual_el {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hero-intro_copy {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// ── Visual layers ───────────────────────────────────────────────────
+.hero-slide_visual {
+  @include cover-absolute;
+}
+
+.g_visual_background {
+  @include cover-absolute;
+  background: linear-gradient(
+    to bottom,
+    rgba($color-black, 0.2),
+    rgba($color-black, 0.4)
+  );
+  z-index: 1;
+}
+
+.hero-visual_el {
+  @include cover-absolute;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale($hero-image-start-scale);
+  transition:
+    opacity $hero-image-duration ease-out,
+    transform $hero-image-duration ease-out;
+  backface-visibility: hidden;
+}
+
+.slide-overlay {
+  @include cover-absolute;
+  background: rgba($color-black, 0.1);
+  z-index: 2;
+}
+
+// ── Site info ───────────────────────────────────────────────────────
+.site-info {
+  position: absolute;
+  bottom: $hero-site-info-bottom;
+  left: 0;
+  z-index: $z-raised;
+  padding: 0 $hero-side-padding;
+  width: auto;
+  max-width: 700px;
+}
+
+.hero-intro_copy {
+  display: flex;
+  flex-direction: column;
+  gap: $hero-copy-gap;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity $hero-transition-duration $transition-ease-in-out $hero-text-delay,
+    transform $hero-transition-duration $transition-ease-in-out $hero-text-delay;
+}
+
+// ── Title (clickable, top, bigger) ──────────────────────────────────
+.hero-title {
+  margin: 0;
+  line-height: 1.1;
+}
+
+.hero-title_link {
+  display: inline-block;
+  text-decoration: none;
+  color: $color-white;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  position: relative;
+  overflow: hidden;
+  transition: color $transition-duration-fast $transition-ease;
+
+  &:hover {
+    .detail-text {
+      transform: translateY(-100%);
+    }
+
+    .detail-wrap::after {
+      transform: translateY(-100%);
+    }
+  }
+
+  @include focus-visible-ring(rgba(255, 255, 255, 0.8));
+}
+
+// ── Text rotate animation ───────────────────────────────────────────
+.detail-wrap {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transition: transform $transition-duration-fast $transition-ease;
+    white-space: nowrap;
+  }
+}
+
+.detail-text {
+  position: relative;
+  display: inline-block;
+  transition: transform $transition-duration-fast $transition-ease;
+}
+
+// ── Description (below title, smaller) ──────────────────────────────
+.hero-description {
+  font-size: $font-size-lg;
+  font-weight: 300;
+  color: $color-white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.4;
+  margin: 0;
+  opacity: 0.85;
+}
+
+// ── Mobile ──────────────────────────────────────────────────────────
+@media (max-width: $hero-breakpoint-mobile) {
+  .hero-center {
+    &.is-desktop {
+      display: none;
+    }
+
+    &.is-mobile {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      bottom: auto;
+      transform: translate(-50%, -50%);
+      width: calc(100% - #{$hero-mobile-width-offset});
+      max-width: 360px;
+      z-index: $z-sticky;
+      pointer-events: none;
+      gap: $hero-copy-gap;
+    }
+  }
+
+  .hero-slider_num.is-mobile {
+    font-size: 36px;
+    min-width: 56px;
+    text-align: center;
+  }
+
+  .hero-slider_scroll.is-next {
+    padding: $spacing-s 20px;
+    font-size: $font-size-base;
+  }
+
+  .site-info {
+    bottom: $hero-site-info-bottom-mobile;
+    padding: 0 $hero-side-padding-mobile;
+    max-width: 100%;
+  }
+
+  .hero-title_link {
+    font-size: clamp(28px, 8vw, 36px);
+  }
+
+  .hero-description {
+    font-size: $font-size-sm;
+    letter-spacing: 1px;
+  }
+
+  .hero-intro_copy {
+    gap: $hero-copy-gap-mobile;
+  }
+}
+
+// ── Tablet ──────────────────────────────────────────────────────────
+@media (min-width: ($hero-breakpoint-mobile + 1px)) and (max-width: $breakpoint-md) {
+  .hero-center.is-desktop {
+    padding: 0 $hero-side-padding;
+  }
+
+  .site-info {
+    padding: 0 $hero-side-padding;
+  }
+
+  .hero-title_link {
+    font-size: clamp(40px, 5vw, 54px);
+  }
+
+  .hero-slider_nav-item {
+    padding: 6px 0;
+  }
+
+  .hero-slider_num {
+    font-size: 20px;
+  }
+}
+
+// ── Accessibility ───────────────────────────────────────────────────
+@include reduced-motion {
+  .hero-slider_item,
+  .hero-visual_el,
+  .hero-intro_copy,
+  .slide-nav_img,
+  .detail-text,
+  .detail-wrap::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@include high-contrast {
+  .hero-slider_num,
+  .hero-title_link,
+  .hero-description {
+    text-shadow: 0 0 2px rgba($color-black, 0.8);
+  }
+
+  .slide-overlay {
+    background: rgba($color-black, 0.3);
+  }
+}
+
+@include print {
+  .hero-slider {
+    height: auto;
+    page-break-inside: avoid;
+
+    .hero-center {
+      display: none;
+    }
+
+    .hero-slider_item {
+      position: relative;
+      opacity: 1;
+      pointer-events: all;
+      page-break-inside: avoid;
+
+      &:not(.active) {
+        display: none;
+      }
+    }
+  }
+}

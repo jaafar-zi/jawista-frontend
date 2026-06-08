@@ -1,0 +1,19 @@
+// logo-icon.component.scss
+@use 'variables' as *;
+
+.logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-black;
+
+  &__svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &--sm { width: 3rem;  height: 3rem; }
+  &--md { width: 6rem;  height: 6rem; }
+  &--lg { width: 10rem; height: 10rem; }
+}

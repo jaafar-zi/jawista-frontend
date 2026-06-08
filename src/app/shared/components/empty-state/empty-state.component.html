@@ -1,0 +1,35 @@
+<!-- empty-state.component.html -->
+<div class="empty-state">
+
+  <!-- Icon Slot -->
+  <div class="empty-state__icon">
+    <ng-content select="[slot=icon]">
+      <!-- Default search icon if none provided -->
+      <app-search-icon size="lg" />
+    </ng-content>
+  </div>
+
+  <!-- Title -->
+  <p class="empty-state__title" *ngIf="title">
+    {{ title }}
+  </p>
+
+  <!-- Subtitle -->
+  <p class="empty-state__subtitle" *ngIf="subtitle">
+    {{ subtitle }}
+  </p>
+
+  <!-- CTA Slot or default -->
+  <div class="empty-state__cta" *ngIf="showCta">
+    <ng-content select="[slot=cta]">
+      <button
+        *ngIf="ctaLabel"
+        type="button"
+        class="empty-state__cta-btn"
+        (click)="ctaClick.emit()">
+        {{ ctaLabel }}
+      </button>
+    </ng-content>
+  </div>
+
+</div>

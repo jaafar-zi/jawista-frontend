@@ -1,0 +1,51 @@
+<div
+  #hoverElement
+  class="cta-hover-element"
+  [class.visible]="visible"
+>
+  <div class="hover-content" dir="ltr">
+    <!-- Reference text -->
+    <div
+      *ngIf="referenceText"
+      class="product-reference"
+      dir="auto"
+    >
+      {{ referenceText }}
+    </div>
+
+    <!-- Action text with fixed bracket flow -->
+    <div class="view-product-wrapper" dir="ltr">
+      <!-- Left bracket -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 5 16"
+        fill="none"
+        class="bracket-svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M4.5 1H4C2.34315 1 1 2.34315 1 4V12C1 13.6569 2.34315 15 4 15H4.5"
+          stroke="currentColor"
+        />
+      </svg>
+
+      <div class="view-product-text" dir="auto">
+        {{ actionText }}
+      </div>
+
+      <!-- Right bracket -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 5 16"
+        fill="none"
+        class="bracket-svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M0.5 15L1 15C2.65685 15 4 13.6569 4 12L4 4C4 2.34315 2.65686 1 1 1L0.500001 1"
+          stroke="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+</div>

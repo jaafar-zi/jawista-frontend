@@ -1,0 +1,252 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:host {
+  display: block;
+  min-height: 100vh;
+  overflow: visible;
+  background-color: $color-black;
+  color: $color-white;
+  font-family: $font-family-primary;
+}
+
+.legal-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100vh;
+  width: 100%;
+  align-items: start;
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: auto;
+  }
+}
+
+.legal-page__title-panel {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: start;
+  padding: $spacing-2xl;
+  box-sizing: border-box;
+  z-index: $z-raised;
+
+  @include respond-to(md) {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 40vh;
+    padding: $spacing-4xl $container-padding-x;
+  }
+
+  @include respond-to(sm) {
+    min-height: 30vh;
+    padding: $spacing-2xl $container-padding-x-sm;
+  }
+}
+
+.legal-page__content-panel {
+  min-width: 0;
+  padding: $spacing-4xl $spacing-2xl $spacing-4xl;
+  box-sizing: border-box;
+  overflow: visible;
+
+  @include respond-to(md) {
+    padding: $spacing-2xl $container-padding-x $spacing-3xl;
+  }
+
+  @include respond-to(sm) {
+    padding: $spacing-lg $container-padding-x-sm $spacing-2xl;
+  }
+}
+
+.legal-page__content-inner {
+  max-width: 640px;
+  width: 100%;
+}
+
+.legal-page__updated {
+  @include text-uppercase-label;
+  color: rgba($color-white, 0.5);
+  margin-bottom: $spacing-2xl;
+}
+
+.legal-page__sections {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.legal-page__section {
+  scroll-margin-top: $spacing-2xl;
+}
+
+.legal-page__section-title {
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  font-optical-sizing: auto;
+  letter-spacing: 0.1em;
+  line-height: $line-height-tight;
+  margin: 0 0 $spacing-sm;
+  text-transform: uppercase;
+  color: $color-white;
+}
+
+.legal-page__section-content {
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+  font-optical-sizing: auto;
+  line-height: $line-height-loose;
+  color: rgba($color-white, 0.7);
+  margin: 0;
+
+  ::ng-deep {
+    p {
+      margin: 0 0 $spacing-sm;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul,
+    ol {
+      margin: $spacing-xs 0 $spacing-sm;
+      padding-left: $spacing-md;
+
+      li {
+        margin-bottom: $spacing-xs;
+        line-height: $line-height-loose;
+      }
+    }
+
+    ul {
+      list-style-type: disc;
+    }
+
+    ol {
+      list-style-type: decimal;
+    }
+
+    a {
+      color: $color-white;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      @include transition-base(opacity);
+
+      &:hover {
+        opacity: 0.6;
+      }
+
+      @include focus-visible-ring($color-white);
+    }
+
+    strong,
+    b {
+      font-weight: $font-weight-semibold;
+      color: rgba($color-white, 0.9);
+    }
+
+    em {
+      font-style: italic;
+    }
+  }
+}
+
+.legal-page__divider {
+  height: 1px;
+  background: rgba($color-white, 0.1);
+  margin-top: $spacing-2xl;
+}
+
+@include reduced-motion {
+  .legal-page__section-content ::ng-deep a {
+    transition: none;
+  }
+}
+
+@include high-contrast {
+  .legal-page__section-content {
+    color: $color-white;
+  }
+
+  .legal-page__updated {
+    color: rgba($color-white, 0.8);
+  }
+}
+
+@include print {
+  :host {
+    min-height: auto;
+    overflow: visible;
+    background-color: $color-white;
+    color: $color-black;
+  }
+
+  .legal-page {
+    display: block;
+    min-height: auto;
+  }
+
+  .legal-page__title-panel {
+    position: static;
+    height: auto;
+    min-height: 0;
+    padding: $spacing-lg;
+    border-bottom: 1px solid $color-gray-200;
+  }
+
+  :host ::ng-deep app-section-title .section-title {
+    color: $color-black;
+  }
+
+  .legal-page__content-panel {
+    padding: $spacing-lg;
+  }
+
+  .legal-page__updated {
+    color: $color-gray-500;
+  }
+
+  .legal-page__section-title {
+    color: $color-black;
+  }
+
+  .legal-page__section-content {
+    color: $color-gray-700;
+
+    ::ng-deep {
+      a {
+        color: $color-black;
+        text-decoration: none;
+
+        &::after {
+          content: ' (' attr(href) ')';
+          font-size: 0.8em;
+          color: $color-gray-500;
+        }
+      }
+
+      strong,
+      b {
+        color: $color-black;
+      }
+    }
+  }
+
+  .legal-page__divider {
+    background: $color-gray-200;
+  }
+
+  .legal-page__section {
+    page-break-inside: avoid;
+  }
+}

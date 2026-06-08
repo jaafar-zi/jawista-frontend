@@ -1,0 +1,30 @@
+@use 'variables' as *;
+
+:host {
+  display: block;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+
+  &__input {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    accent-color: $color-black;
+    border: 1px solid $color-black;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    color: #666;
+  }
+}

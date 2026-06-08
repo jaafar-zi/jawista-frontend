@@ -1,0 +1,63 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ── Host ────────────────────────────────────────────────────────────────
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: $color-white;
+}
+
+// ── Main ────────────────────────────────────────────────────────────────
+.product-list__main {
+  padding-top: 10rem;
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+  padding-bottom: $spacing-4xl;
+
+  @include respond-to(md) {
+    padding-top: 10rem;
+    padding-bottom: $spacing-2xl;
+  }
+
+  @include respond-to(sm) {
+    padding-top: 8rem;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    padding-bottom: $spacing-lg;
+  }
+}
+
+// ── Grid ────────────────────────────────────────────────────────────────
+.product-list__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: $spacing-lg;
+  row-gap: $spacing-4xl;
+  animation: fadeInUp 0.5s ease;
+
+  @include respond-above(sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include respond-to(sm) {
+    column-gap: $spacing-md;
+    row-gap: $spacing-2xl;
+  }
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+// ── Animation ─────────────────────────────────────────────────────────
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

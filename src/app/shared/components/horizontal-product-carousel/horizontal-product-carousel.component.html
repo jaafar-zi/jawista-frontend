@@ -1,0 +1,27 @@
+<div class="carousel-wrapper" *ngIf="products?.length" dir="ltr">
+  <div
+    class="carousel-track"
+    [style.animation-duration]="animationDuration"
+    dir="ltr"
+  >
+    <div class="carousel-group" dir="ltr">
+      <app-product-card-slide
+        *ngFor="let product of products; trackBy: trackByProduct"
+        [product]="product"
+        [hoverImage]="product.hoverImage"
+        [currencySymbol]="resolvedCurrency"
+        class="product-card-item"
+      ></app-product-card-slide>
+    </div>
+
+    <div class="carousel-group" aria-hidden="true" dir="ltr">
+      <app-product-card-slide
+        *ngFor="let product of products; trackBy: trackByProduct"
+        [product]="product"
+        [hoverImage]="product.hoverImage"
+        [currencySymbol]="resolvedCurrency"
+        class="product-card-item"
+      ></app-product-card-slide>
+    </div>
+  </div>
+</div>

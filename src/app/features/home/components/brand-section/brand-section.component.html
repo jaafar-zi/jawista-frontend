@@ -1,0 +1,24 @@
+<!-- brand-section.component.html -->
+<app-section-container
+  variant="transparent"
+  maxWidth="lg"
+  padding="none">
+
+  <div class="brand-section__grid">
+
+    <div class="brand-section__logo-wrapper">
+      <img
+        [className]="'brand-section__logo'"
+        [src]="logoUrl$ | async"
+        alt="Brand visual"/>
+    </div>
+
+    <div class="brand-section__text-wrapper">
+      <p class="brand-section__text">
+        {{ 'home.brandSection.text' | transloco }}
+      </p>
+    </div>
+
+  </div>
+
+</app-section-container>

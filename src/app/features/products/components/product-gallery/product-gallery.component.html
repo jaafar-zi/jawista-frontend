@@ -1,0 +1,39 @@
+<!-- product-gallery.component.html -->
+<div class="product-gallery">
+
+  <!-- Featured Image -->
+  <div class="product-gallery__featured">
+    <img
+      class="product-gallery__img"
+      [src]="featuredImage"
+      [alt]="productName"
+      loading="eager"
+      (error)="onImageError($event)"
+    />
+  </div>
+
+  <!-- Additional Images Grid -->
+  <div
+    *ngIf="additionalImages.length > 0"
+    class="product-gallery__grid"
+    role="list">
+
+    <div
+      *ngFor="let image of additionalImages; let i = index; trackBy: trackByIndex"
+      class="product-gallery__grid-item"
+      role="listitem">
+      <img
+        class="product-gallery__img"
+        [src]="image"
+        [alt]="'products.gallery.additionalImageAlt' | transloco : {
+          productName: productName,
+          index: i + 2
+        }"
+        loading="lazy"
+        (error)="onImageError($event)"
+      />
+    </div>
+
+  </div>
+
+</div>

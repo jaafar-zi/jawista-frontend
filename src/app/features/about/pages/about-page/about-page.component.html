@@ -1,0 +1,39 @@
+<!-- about-page.component.html -->
+<div class="min-h-screen bg-white">
+
+  <section appNavLight="light">
+    <app-hero-section></app-hero-section>
+  </section>
+  
+  <!-- Hero / Image Section -->
+  <section appNavLight="light">
+    <app-image-section [config]="heroConfig"></app-image-section>
+  </section>
+
+  <!-- split grid Image Section -->
+  <section appNavLight="light">
+    <app-split-grid></app-split-grid>
+  </section>
+
+  <!-- Vision Section -->
+  <section appNavLight="dark" class="py-20 bg-white">
+    <app-story-section></app-story-section>
+  </section>
+
+  <!-- Sticky Gallery -->
+  <section appNavLight="dark" class="sticky-gallery-section bg-white">
+    <div class="sticky-background-content">
+      <div class="sticky-background-inner">
+        <app-community-section></app-community-section>
+      </div>
+    </div>
+
+    <div class="sticky-gallery-content">
+      <app-sticky-gallery
+        [items]="stickyItems"
+        [fallbackImages]="stickyFallbackImages">
+      </app-sticky-gallery>
+    </div>
+  </section>
+
+</div>

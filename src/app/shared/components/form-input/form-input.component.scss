@@ -1,0 +1,152 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.form-input {
+
+  &__control {
+    border: 1px solid $color-gray-500;
+    background: $color-white;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      border-color: $color-gray-500;
+    }
+
+    &:focus-within {
+      border-color: $color-gray-500;
+    }
+
+    &--error {
+      border-color: $color-gray-500;
+      animation: shake 0.3s ease;
+
+      &:hover {
+        border-color: $color-gray-500;
+      }
+
+      &:focus-within {
+        border-color: $color-gray-500;
+      }
+    }
+
+    &--disabled {
+      border-color: $color-gray-500;
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        border-color: $color-gray-500;
+      }
+    }
+  }
+
+  &__field {
+    width: -webkit-fill-available;
+    padding: 0.75rem 1rem;
+    border: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 0;
+    background: transparent !important;
+    background-image: none !important;
+    color: $color-black;
+    font-size: 0.875rem;
+    line-height: 1.5;
+
+    &::placeholder {
+      color: #999;
+    }
+
+    &:focus,
+    &:active,
+    &:hover {
+      border: 0 !important;
+      outline: none !important;
+      box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 1;
+    }
+  }
+
+  &__underline-field {
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--foreground);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: $spacing-xs 0;
+    width: 100%;
+    outline: none;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    @include transition-base(border-color);
+
+    &::placeholder {
+      color: var(--muted-foreground);
+    }
+
+    &:focus {
+      border-bottom-color: var(--foreground);
+    }
+
+    &--error {
+      border-bottom-color: var(--destructive);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  &__error {
+    margin: 0.25rem 0 0;
+    font-size: 0.75rem;
+    color: $color-red-500;
+    animation: fadeIn 0.3s ease;
+
+    &--underline {
+      font-family: $font-family-primary;
+      font-size: $font-size-base;
+      color: var(--destructive);
+      letter-spacing: 0.04em;
+      margin-top: $spacing-xs * 0.75;
+      margin-bottom: $spacing-xs * 0.5;
+    }
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

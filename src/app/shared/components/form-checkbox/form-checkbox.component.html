@@ -1,0 +1,10 @@
+<label class="form-checkbox">
+  <input
+    type="checkbox"
+    [checked]="checked"
+    [disabled]="disabled"
+    class="form-checkbox__input"
+    (change)="onCheckboxChange($event)"
+  />
+  <span class="form-checkbox__label">{{ label }}</span>
+</label>

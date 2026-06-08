@@ -1,0 +1,32 @@
+<!-- featured-products-section.component.html -->
+<ng-container *transloco="let t">
+  <app-section-container
+    variant="transparent"
+    maxWidth="none"
+    padding="none">
+
+    <div class="featured-products__header">
+      <app-section-title
+        [title]="t('home.featuredProductsSection.title')"
+        alignment="center">
+      </app-section-title>
+    </div>
+
+    <div class="featured-products__carousel">
+      <app-horizontal-product-carousel
+        [products]="products"
+        [scrollSpeed]="scrollSpeed"
+        [currencySymbol]="currencySymbol">
+      </app-horizontal-product-carousel>
+    </div>
+
+    <div class="featured-products__cta">
+      <app-bracket-cta
+        [text]="t('home.featuredProductsSection.cta')"
+        [href]="ctaHref"
+        [colorScheme]="ctaColorScheme">
+      </app-bracket-cta>
+    </div>
+
+  </app-section-container>
+</ng-container>

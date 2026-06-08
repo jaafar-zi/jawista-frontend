@@ -1,0 +1,19 @@
+<ng-template #titleContent>
+  <ng-content></ng-content>
+</ng-template>
+
+<h1 *ngIf="level === 'h1'" [ngClass]="classes">
+  <ng-container *ngTemplateOutlet="titleContent"></ng-container>
+</h1>
+
+<h2 *ngIf="level === 'h2'" [ngClass]="classes">
+  <ng-container *ngTemplateOutlet="titleContent"></ng-container>
+</h2>
+
+<h3 *ngIf="level === 'h3'" [ngClass]="classes">
+  <ng-container *ngTemplateOutlet="titleContent"></ng-container>
+</h3>
+
+<h4 *ngIf="level === 'h4'" [ngClass]="classes">
+  <ng-container *ngTemplateOutlet="titleContent"></ng-container>
+</h4>

@@ -1,0 +1,35 @@
+<!-- accordion.component.html -->
+<div
+  class="accordion"
+  [class.accordion--expanded]="isExpanded">
+
+  <!-- Toggle Button -->
+  <button
+    type="button"
+    class="accordion__toggle"
+    (click)="onToggle()"
+    [attr.aria-expanded]="isExpanded"
+    [attr.aria-controls]="'accordion-content-' + itemId">
+
+    <span class="accordion__title">{{ title }}</span>
+
+    <!-- Plus/Minus Icon -->
+    <div class="accordion__icon" [class.accordion__icon--open]="isExpanded">
+      <div class="accordion__line"></div>
+      <div class="accordion__line accordion__line--vert"></div>
+    </div>
+
+  </button>
+
+  <!-- Content -->
+  <div
+    [id]="'accordion-content-' + itemId"
+    class="accordion__content"
+    [class.accordion__content--expanded]="isExpanded"
+    [attr.aria-hidden]="!isExpanded">
+    <div class="accordion__body">
+      <ng-content />
+    </div>
+  </div>
+
+</div>

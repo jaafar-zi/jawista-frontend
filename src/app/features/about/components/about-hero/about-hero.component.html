@@ -1,0 +1,47 @@
+<!-- about-hero.component.html -->
+<section class="about-hero" appNavLight="dark">
+  <div class="about-hero__contain u-container">
+    <div class="split-grid">
+
+      <!-- Logo -->
+      <div class="split-col split-col--3">
+        <div class="about-hero-logo__wrap" aria-hidden="true">
+          <app-logo-icon size="lg" />
+        </div>
+      </div>
+
+      <!-- Spacer -->
+      <div class="split-col split-col--3 u-hidden" aria-hidden="true"></div>
+
+      <!-- Text -->
+      <div class="split-col split-col--6">
+        <div class="about-head__wrap">
+
+          <!-- Hover content -->
+          <div class="about-body" aria-hidden="true">
+            <div class="about-intro__copy u-text-style-small">
+
+              <div class="about-name u-text-style-alt">
+                <div>{{ 'about.hero.ourName' | transloco }}</div>
+              </div>
+
+              <div class="about-inline">
+                <p>{{ 'about.hero.description' | transloco }}</p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Main title -->
+          <div class="about-head">
+            <h1 class="u-text-style-h2">
+              {{ 'about.hero.title' | transloco }}
+            </h1>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

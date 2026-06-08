@@ -1,0 +1,20 @@
+@use 'variables' as *;
+
+:host {
+  display: block;
+}
+
+.label-text {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+  font-weight: $font-weight-normal;
+
+  &--xs { font-size: 0.625rem; }
+  &--sm { font-size: $font-size-base; }
+  &--md { font-size: $font-size-sm; }
+
+  &--default { color: $color-black; }
+  &--muted   { color: $color-gray-500; }
+  &--light   { color: $color-white; }
+}

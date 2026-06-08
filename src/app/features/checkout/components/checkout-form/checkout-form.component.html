@@ -1,0 +1,132 @@
+<div class="checkout-form">
+
+  <app-section-title
+    level="h1"
+    size="display"
+    weight="bold">
+    {{ 'checkout.form.pageTitle' | transloco }}
+  </app-section-title>
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+    <!-- ─── Contact Section ──────────────────────────────────── -->
+    <div class="checkout-form__section">
+      <app-section-title
+        level="h2"
+        size="label"
+        weight="bold">
+        {{ 'checkout.form.contact.heading' | transloco }}
+      </app-section-title>
+
+      <div class="checkout-form__fields">
+
+        <!-- Phone (required) -->
+        <div class="checkout-form__field">
+          <app-form-input
+            type="tel"
+            formControlName="phone"
+            [placeholder]="'checkout.form.contact.phonePlaceholder' | transloco"
+            [errorMessage]="getErrorMessage('phone')"
+            [invalid]="phone?.invalid && phone?.touched">
+          </app-form-input>
+          <p class="checkout-form__required-hint">
+            {{ 'checkout.form.contact.phoneRequired' | transloco }}
+          </p>
+        </div>
+
+        <!-- Email (optional) -->
+        <div class="checkout-form__field">
+          <app-form-input
+            type="email"
+            formControlName="email"
+            [placeholder]="'checkout.form.contact.emailPlaceholder' | transloco"
+            [errorMessage]="getErrorMessage('email')"
+            [invalid]="email?.invalid && email?.touched">
+          </app-form-input>
+          <p class="checkout-form__optional-hint">
+            {{ 'checkout.form.contact.emailOptional' | transloco }}
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Delivery Section ─────────────────────────────────── -->
+    <div class="checkout-form__section">
+      <app-section-title
+        level="h2"
+        size="label"
+        weight="bold">
+        {{ 'checkout.form.delivery.heading' | transloco }}
+      </app-section-title>
+
+      <div class="checkout-form__fields">
+
+        <app-form-input
+          type="text"
+          formControlName="name"
+          [placeholder]="'checkout.form.delivery.namePlaceholder' | transloco"
+          [errorMessage]="getErrorMessage('name')"
+          [invalid]="name?.invalid && name?.touched">
+        </app-form-input>
+
+        <app-form-input
+          type="text"
+          formControlName="address"
+          [placeholder]="'checkout.form.delivery.addressPlaceholder' | transloco"
+          [errorMessage]="getErrorMessage('address')"
+          [invalid]="address?.invalid && address?.touched">
+        </app-form-input>
+
+        <div class="checkout-form__row checkout-form__row--2">
+
+          <div class="checkout-form__select-wrap">
+            <select
+              formControlName="city"
+              class="checkout-form__select"
+              [class.checkout-form__select--error]="city?.invalid && city?.touched"
+              [class.checkout-form__select--placeholder]="!city?.value"
+              (change)="onCityChange()">
+              <option value="" disabled>
+                {{ 'checkout.form.delivery.cityPlaceholder' | transloco }}
+              </option>
+              <option *ngFor="let c of cities" [value]="c.city">
+                {{ c.city }}
+              </option>
+            </select>
+            <p
+              *ngIf="city?.invalid && city?.touched"
+              class="checkout-form__field-error">
+              {{ getErrorMessage('city') }}
+            </p>
+          </div>
+
+          <div class="checkout-form__province-wrap">
+            <input
+              type="text"
+              formControlName="province"
+              class="checkout-form__province"
+              [placeholder]="'checkout.form.delivery.provincePlaceholder' | transloco"
+              readonly />
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Submit Button ────────────────────────────────────── -->
+    <app-button
+      type="submit"
+      variant="primary"
+      [fullWidth]="true"
+      [loading]="isSubmitting"
+      [disabled]="checkoutForm.invalid || isSubmitting">
+      {{
+        isSubmitting
+          ? ('checkout.form.submit.processing' | transloco)
+          : ('checkout.form.submit.placeOrder' | transloco)
+      }}
+    </app-button>
+
+  </form>
+</div>

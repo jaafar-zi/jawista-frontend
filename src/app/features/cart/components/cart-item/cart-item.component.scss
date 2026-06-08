@@ -1,0 +1,37 @@
+:host {
+  display: block;
+}
+
+// Smooth transitions
+.cart-item {
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.01);
+  }
+}
+
+// Quantity button animations
+button {
+  &:active:not(:disabled) {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Image fade-in
+img {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

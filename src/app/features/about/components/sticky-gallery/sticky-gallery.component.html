@@ -1,0 +1,28 @@
+<div class="sticky-component">
+  <div class="background-text">
+    <ng-content select="[slot=background-text]"></ng-content>
+  </div>
+
+  <div class="diamond-gallery">
+    @for (item of items; track item.id) {
+      <div
+        class="diamond-item"
+        [class]="'diamond-item--' + item.alignment"
+        [style.z-index]="item.zIndex">
+        <div class="diamond-item__wrapper">
+          <div class="diamond-item__img-container">
+            <img
+              [src]="item.imageUrl"
+              [alt]="item.altText"
+              (error)="onImageError($event, $index)"
+              class="diamond-item__img"
+              loading="eager"
+              width="930"
+              height="530"
+            />
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<!-- status-message.component.html -->
+<div
+  *ngIf="visible && message"
+  class="status-message"
+  [class]="'status-message status-message--' + variant"
+  role="alert"
+  aria-live="polite"
+>
+  {{ message }}
+</div>

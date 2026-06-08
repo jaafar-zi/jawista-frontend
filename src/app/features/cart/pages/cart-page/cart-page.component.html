@@ -1,0 +1,55 @@
+<!-- features/cart/pages/cart-page/cart-page.component.html -->
+
+<div class="min-h-screen bg-white">
+
+  <ng-container *ngIf="vm$ | async as vm">
+
+    <div class="container mx-auto px-8 py-16">
+      <div class="max-w-3xl">
+
+        <!-- Page Title -->
+        <h1 class="text-2xl uppercase tracking-wider mb-12">
+          {{ 'cart.page.title' | transloco }}
+        </h1>
+
+        <!-- Empty Cart State -->
+        <div *ngIf="vm.isEmpty" class="py-16 text-center">
+          <p class="text-sm text-gray-500 mb-8">
+            {{ 'cart.page.emptyState.message' | transloco }}
+          </p>
+          <app-button
+            variant="outline"
+            [routerLink]="productsRoute"
+          >
+            {{ 'cart.page.emptyState.continueShopping' | transloco }}
+          </app-button>
+        </div>
+
+        <!-- Cart with Items -->
+        <div *ngIf="!vm.isEmpty">
+
+          <!-- Cart Items List -->
+          <div class="space-y-8 mb-12">
+            <app-cart-item
+              *ngFor="let item of vm.cart.items; trackBy: trackByItemId"
+              [item]="item"
+              (quantityChange)="onUpdateQuantity($event.itemId, $event.quantity)"
+              (remove)="onRemoveItem($event)"
+            ></app-cart-item>
+          </div>
+
+          <!-- Cart Summary -->
+          <app-cart-summary
+            [subtotal]="vm.subtotal"
+            (checkout)="onCheckout()"
+            (continueShopping)="onContinueShopping()"
+          ></app-cart-summary>
+
+        </div>
+
+      </div>
+    </div>
+
+  </ng-container>
+
+</div>

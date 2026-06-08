@@ -1,0 +1,87 @@
+<div class="product-info">
+
+  <div class="product-info__header">
+    <div class="product-info__header-grid">
+      <h1 class="product-info__title">{{ product.name }}</h1>
+      <span class="product-info__price">
+        {{ resolvedCurrency }} {{ formattedPrice }}
+      </span>
+    </div>
+  </div>
+
+  <div
+    class="product-info__description"
+    *ngIf="product.description">
+    <div
+      class="product-info__description-content"
+      [innerHTML]="product.description">
+    </div>
+  </div>
+
+  <div
+    class="product-info__attributes"
+    *ngIf="productAttributes.length > 0">
+    <app-accordion
+      *ngFor="let attr of productAttributes; trackBy: trackByAttributeId"
+      [itemId]="attr.id"
+      [title]="attr.title"
+      [isExpanded]="isExpanded(attr.id)"
+      (toggled)="toggleAccordion($event)">
+      <div [innerHTML]="attr.content"></div>
+    </app-accordion>
+  </div>
+
+  <app-option-selector
+    *ngIf="product.sizes && product.sizes.length > 0"
+    [options]="product.sizes"
+    [selected]="selectedSize"
+    [disabled]="!product.inStock"
+    (optionChange)="onSelectSize($event)">
+  </app-option-selector>
+
+  <app-option-selector
+    *ngIf="product.colors && product.colors.length > 0"
+    [label]="'products.info.colorLabel' | transloco"
+    [options]="product.colors"
+    [selected]="selectedColor"
+    [disabled]="!product.inStock"
+    (optionChange)="onSelectColor($event)">
+  </app-option-selector>
+
+  <div class="product-info__cart">
+
+    <app-status-message
+      *ngIf="!product.inStock"
+      variant="error"
+      [message]="'products.info.outOfStock' | transloco">
+    </app-status-message>
+
+    <app-status-message
+      *ngIf="addToCartSuccess"
+      variant="success"
+      [message]="'products.info.addToCartSuccess' | transloco">
+    </app-status-message>
+
+    <app-button
+      variant="primary"
+      size="large"
+      [fullWidth]="true"
+      [disabled]="!canAddToCart"
+      [loading]="isAddingToCart"
+      [showContentWhileLoading]="true"
+      [ariaLabel]="'products.info.addToCart' | transloco"
+      (clicked)="onAddToCart()">
+
+      <ng-container *ngIf="!isAddingToCart">
+        {{ 'products.info.addToCart' | transloco }}
+      </ng-container>
+
+      <ng-container *ngIf="isAddingToCart">
+        {{ 'products.info.addingToCart' | transloco }}
+      </ng-container>
+
+    </app-button>
+
+  </div>
+
+</div>

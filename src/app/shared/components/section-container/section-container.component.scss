@@ -1,0 +1,57 @@
+// section-container.component.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.section-container {
+  width: 100%;
+
+  // ── Backgrounds ───────────────────────────────────────────────────────
+  &--bg-default     { background-color: $color-white; }
+  &--bg-muted       { background-color: $color-gray-50; }
+  &--bg-dark        { background-color: $color-gray-900; color: $color-white; }
+  &--bg-transparent { background-color: transparent; }
+
+  // ── Padding ───────────────────────────────────────────────────────────
+  &--pad-none { padding: 0; }
+
+  &--pad-sm {
+    padding: $spacing-lg 0;
+    @include respond-to(sm) { padding: $spacing-sm 0; }
+  }
+
+  &--pad-md {
+    padding: $spacing-xl 0;
+    @include respond-to(sm) { padding: $spacing-lg 0; }
+  }
+
+  &--pad-lg {
+    padding: $spacing-2xl 0;
+    @include respond-to(sm) { padding: $spacing-xl 0; }
+  }
+
+  &--pad-xl {
+    padding: $spacing-4xl 0;
+    @include respond-to(sm) { padding: $spacing-2xl 0; }
+    @include respond-to(xs) { padding: $spacing-lg 0; }
+  }
+
+  // ── Inner Container ───────────────────────────────────────────────────
+  &__inner {
+    padding: $container-padding-x;
+
+    @include respond-to(sm) {
+      padding: $container-padding-x-sm;
+    }
+
+    // Max-width variants
+    &--sm   { max-width: 640px; }
+    &--md   { max-width: $container-max-width; }
+    &--lg   { max-width: $container-max-width-wide; }
+    &--xl   { max-width: $container-max-width-full; }
+    &--full { max-width: 100%; }
+    &--none { max-width: none; padding: 0; }
+
+    // Centered
+    &--centered { text-align: center; }
+  }
+}

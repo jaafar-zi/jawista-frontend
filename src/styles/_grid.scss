@@ -1,0 +1,67 @@
+// =============================================================================
+// 12-Column Grid System
+// =============================================================================
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ── Grid Container ──────────────────────────────────────────────────────────
+.split-grid {
+  width: 100%;
+  position: relative;
+  flex: none;
+
+  &.u-grid-desktop {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns, 12), 1fr);
+    grid-template-rows: auto;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: var(--site-gutter, 1.25rem);
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr;
+      gap: var(--size-1-25, 1.25rem);
+    }
+  }
+
+  // Horizontal mode (used for some sections)
+  &--desktop {
+    @extend .u-grid-desktop;
+  }
+}
+
+// ── Column Spans ────────────────────────────────────────────────────────────
+.split-col {
+  min-width: 0; // Prevent grid blowout
+
+  &.u-column-2  { grid-column: auto / span 2; }
+  &.u-column-3  { grid-column: auto / span 3; }
+  &.u-column-4  { grid-column: auto / span 4; }
+  &.u-column-5  { grid-column: auto / span 5; }
+  &.u-column-6  { grid-column: auto / span 6; }
+  &.u-column-7  { grid-column: auto / span 7; }
+  &.u-column-8  { grid-column: auto / span 8; }
+  &.u-column-9  { grid-column: auto / span 9; }
+  &.u-column-10 { grid-column: auto / span 10; }
+  &.u-column-11 { grid-column: auto / span 11; }
+  &.u-column-12 { grid-column: auto / span 12; }
+
+  // All collapse on tablet
+  @include respond-to(md) {
+    &[class*="u-column-"] {
+      grid-column: 1;
+    }
+  }
+}
+
+// ── Column Width Variables (for non-grid contexts) ──────────────────────────
+:root {
+  --column-width-2:  calc(100% * 2 / 12);
+  --column-width-3:  calc(100% * 3 / 12);
+  --column-width-4:  calc(100% * 4 / 12);
+  --column-width-5:  calc(100% * 5 / 12);
+  --column-width-6:  calc(100% * 6 / 12);
+  --column-width-7:  calc(100% * 7 / 12);
+  --column-width-8:  calc(100% * 8 / 12);
+  --column-width-9:  calc(100% * 9 / 12);
+  --column-width-10: calc(100% * 10 / 12);
+}

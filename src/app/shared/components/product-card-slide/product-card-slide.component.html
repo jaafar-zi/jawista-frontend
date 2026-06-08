@@ -1,0 +1,95 @@
+<div
+  class="product-card-slide"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+>
+  <div class="product-image-wrapper">
+    <!-- Main image -->
+    <img
+      [src]="product.image"
+      [alt]="product.name"
+      class="product-main-image"
+      [class.zoomed]="isHovering"
+      loading="lazy"
+      (error)="onImageError($event)"
+    />
+
+    <!-- Hover image -->
+    <img
+      *ngIf="hoverImage"
+      [src]="hoverImage"
+      [alt]="product.name"
+      class="product-hover-image"
+      [class.visible]="isHovering"
+      loading="lazy"
+      (error)="onImageError($event)"
+    />
+
+    <!-- Badge -->
+    <span
+      *ngIf="showBadge && badgeText"
+      [class]="badgeClasses"
+    >
+      {{ badgeText }}
+    </span>
+
+    <!-- Out of stock -->
+    <div *ngIf="!product.inStock" class="out-of-stock-overlay">
+      <span class="out-of-stock-text">
+        {{ 'products.info.outOfStock' | transloco }}
+      </span>
+    </div>
+
+    <!-- Info panel (hover) -->
+    <a
+      [routerLink]="productLink"
+      class="product-info-panel"
+      [class.visible]="isHovering"
+      (click)="onCardClick($event)"
+    >
+      <div class="info-content">
+        <div class="product-details">
+          <h3 class="product-title">
+            {{ product.name }}
+          </h3>
+          <p class="product-reference">
+            {{ productReference }}
+          </p>
+        </div>
+
+        <div class="product-action">
+          <div class="product-price">
+            {{ resolvedCurrency }} {{ formattedPrice }}
+          </div>
+
+          <div class="arrow-container" dir="ltr">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 13 13"
+              fill="none"
+              class="arrow-svg arrow-1"
+              aria-hidden="true"
+            >
+              <path
+                d="M5.99805 1.00049L11.6549 6.65734M11.6549 6.65734H0.341193M11.6549 6.65734L5.99805 12.3142"
+                stroke="currentColor"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 13 13"
+              fill="none"
+              class="arrow-svg arrow-2"
+              aria-hidden="true"
+            >
+              <path
+                d="M5.99805 1.00049L11.6549 6.65734M11.6549 6.65734H0.341193M11.6549 6.65734L5.99805 12.3142"
+                stroke="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

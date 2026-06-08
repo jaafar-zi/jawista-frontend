@@ -1,0 +1,37 @@
+<div
+  class="form-input"
+  [class.form-input--underline]="variant === 'underline'">
+
+  <div
+    *ngIf="variant === 'default'"
+    class="form-input__control"
+    [class.form-input__control--error]="showError"
+    [class.form-input__control--disabled]="disabled">
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [value]="value"
+      [disabled]="disabled"
+      class="form-input__field"
+      (input)="onInput($event)"
+      (blur)="onBlur()" />
+  </div>
+
+  <input
+    *ngIf="variant === 'underline'"
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    class="form-input__underline-field"
+    [class.form-input__underline-field--error]="showError"
+    (input)="onInput($event)"
+    (blur)="onBlur()" />
+
+  <p
+    *ngIf="showError"
+    class="form-input__error"
+    [class.form-input__error--underline]="variant === 'underline'">
+    {{ errorMessage }}
+  </p>
+</div>

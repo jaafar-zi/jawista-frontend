@@ -1,0 +1,44 @@
+// cover-image.component.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.cover-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  &__img {
+    @include cover-image;
+    will-change: transform;
+    transition: transform $transition-duration-base $transition-ease;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  &__overlay {
+    @include cover-absolute;
+    background: rgba($color-black, 0);
+    transition: background $transition-duration-base $transition-ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // Hover effects
+  &--hoverable {
+    &:hover .cover-image__img {
+      transform: scale(1.05);
+    }
+
+    &:hover .cover-image__overlay {
+      background: rgba($color-black, 0.2);
+    }
+  }
+
+  @include reduced-motion {
+    .cover-image__img,
+    .cover-image__overlay {
+      transition: none;
+    }
+  }
+}

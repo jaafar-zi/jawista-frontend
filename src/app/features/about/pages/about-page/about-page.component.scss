@@ -1,0 +1,121 @@
+// about-page.component.scss
+
+$section-spacing: 5rem;
+$transition-smooth: all 0.3s ease-in-out;
+$mobile-breakpoint: 768px;
+
+section {
+  position: relative;
+  width: 100%;
+
+  &[appNavLight] {
+    transition: $transition-smooth;
+
+    &[navTheme='light'] {
+      --nav-text-color: #ffffff;
+      --nav-bg-color: transparent;
+    }
+
+    &[navTheme='dark'] {
+      --nav-text-color: #000000;
+      --nav-bg-color: transparent;
+    }
+  }
+}
+
+.cta-section {
+  padding: $section-spacing 0;
+
+  @media (max-width: $mobile-breakpoint) {
+    padding: 3rem 0;
+  }
+
+  h2 {
+    letter-spacing: 0.15em;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  p {
+    margin-bottom: 3rem;
+    opacity: 0.9;
+  }
+}
+
+/* Sticky gallery section */
+.sticky-gallery-section {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  isolation: isolate;
+}
+
+/* Background layer behind the gallery */
+.sticky-background-content {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* This is the fixed-looking background during scroll */
+.sticky-background-inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Better mobile viewport support */
+@supports (height: 100dvh) {
+  .sticky-background-inner {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+}
+
+.sticky-background-inner app-community-section {
+  display: block;
+  width: 100%;
+}
+
+/* Foreground gallery scrolls above the background */
+.sticky-gallery-content {
+  position: relative;
+  z-index: 1;
+}
+
+.sticky-gallery-content app-sticky-gallery {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: $mobile-breakpoint) {
+  section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* keep sticky gallery full-width */
+  .sticky-gallery-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section {
+    &[appNavLight] {
+      transition: none;
+    }
+  }
+}
+
+@media print {
+  section {
+    page-break-inside: avoid;
+  }
+}

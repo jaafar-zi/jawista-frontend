@@ -1,0 +1,41 @@
+// skeleton.component.scss
+@use 'variables' as *;
+
+:host {
+  display: block;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    $color-gray-100 25%,
+    $color-gray-200 50%,
+    $color-gray-100 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+
+  &--rect {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  &--square {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  &--text {
+    height: 1rem;
+    border-radius: 0.25rem;
+  }
+
+  &--circle {
+    border-radius: 9999px;
+  }
+}
+
+@keyframes shimmer {
+  0%   { background-position:  200% 0; }
+  100% { background-position: -200% 0; }
+}

@@ -1,0 +1,336 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+$_ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: $z-modal;
+  pointer-events: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba($color-black, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-modal;
+  padding: $spacing-sm;
+  pointer-events: all;
+
+  animation: overlayIn $transition-duration-base $transition-ease both;
+
+  &.closing {
+    animation: overlayOut $transition-duration-base $transition-ease forwards;
+  }
+}
+
+@keyframes overlayIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes overlayOut { from { opacity: 1; } to { opacity: 0; } }
+
+.modal-card {
+  display: flex;
+  width: 100%;
+  max-width: 860px;
+  min-height: 500px;
+  background: var(--card);
+  overflow: hidden;
+  position: relative;
+
+  animation: cardIn $transition-duration-base $_ease-out-expo both;
+  animation-delay: 50ms;
+
+  &.closing {
+    animation: cardOut $transition-duration-fast $_ease-out-expo forwards;
+  }
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY($spacing-lg); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cardOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY($spacing-sm); }
+}
+
+.modal-image {
+  flex: 0 0 45%;
+  overflow: hidden;
+
+  img {
+    @include cover-image;
+  }
+}
+
+.modal-content {
+  flex: 1 1 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: $spacing-2xl;
+  position: relative;
+  background: var(--background);
+}
+
+.modal-close {
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground);
+  padding: $spacing-xs;
+  line-height: 0;
+
+  @include transition-base(opacity);
+  @include focus-visible-ring(var(--ring));
+
+  &:hover {
+    opacity: 0.45;
+  }
+}
+
+.modal-title {
+  font-family: $font-family-primary;
+  font-size: clamp($font-size-lg, 2vw, $font-size-xl);
+  font-weight: $font-weight-normal;
+  line-height: $line-height-tight;
+  letter-spacing: 0.01em;
+  color: var(--foreground);
+  margin: 0 0 $spacing-lg;
+  text-transform: uppercase;
+
+  strong {
+    font-weight: $font-weight-bold;
+    display: block;
+  }
+}
+
+.error-banner {
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  color: var(--destructive);
+  letter-spacing: 0.04em;
+  padding: $spacing-xs $spacing-sm;
+  border: 1px solid var(--destructive);
+  margin-bottom: $spacing-md;
+  text-align: center;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  &__prefix-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__prefix-hint {
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    color: var(--muted-foreground);
+    letter-spacing: 0.04em;
+    margin-top: $spacing-xs * 0.5;
+    margin-bottom: $spacing-xs * 0.5;
+  }
+}
+
+.submit-btn {
+  margin-top: $spacing-md;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--foreground);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  width: fit-content;
+
+  @include transition-base(opacity);
+  @include focus-visible-ring(var(--ring));
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--foreground);
+    transition: width $transition-duration-fast $_ease-out-expo;
+  }
+
+  &:hover {
+    opacity: 0.6;
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+
+    &:hover {
+      opacity: 0.4;
+
+      &::after {
+        width: 0;
+      }
+    }
+  }
+}
+
+.success-message {
+  animation: fadeUp $transition-duration-fast $_ease-out-expo both;
+
+  p {
+    font-family: $font-family-primary;
+    font-size: $font-size-xl;
+    color: var(--foreground);
+    margin: 0 0 $spacing-xs;
+  }
+
+  .success-sub {
+    font-family: $font-family-primary;
+    font-size: $font-size-sm;
+    letter-spacing: 0.08em;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    margin: 0;
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY($spacing-sm); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.discount-code-display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  margin-top: $spacing-lg;
+  padding: $spacing-md 0;
+  border-top: 1px solid var(--border);
+
+  animation: fadeUp $transition-duration-fast $_ease-out-expo both;
+  animation-delay: 200ms;
+}
+
+.discount-label {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.discount-code {
+  font-family: $font-family-primary;
+  font-size: clamp($font-size-lg, 2.5vw, $font-size-2xl);
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--foreground);
+  user-select: all;
+  cursor: text;
+}
+
+@include reduced-motion {
+  .modal-overlay,
+  .modal-card,
+  .success-message,
+  .discount-code-display {
+    animation: none;
+  }
+
+  .submit-btn::after {
+    transition: none;
+  }
+}
+
+@include respond-to(sm) {
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-card {
+    flex-direction: column;
+    min-height: unset;
+    max-width: 100%;
+    border-radius: 0;
+
+    animation: cardInMobile $transition-duration-fast $_ease-out-expo both;
+    animation-delay: 50ms;
+
+    &.closing {
+      animation: cardOutMobile $transition-duration-fast $_ease-out-expo forwards;
+    }
+  }
+
+  .modal-image {
+    display: none;
+  }
+
+  .modal-content {
+    padding: $spacing-lg $spacing-md $spacing-2xl;
+    justify-content: flex-start;
+    min-height: 60vh;
+  }
+
+  .modal-title {
+    font-size: $font-size-md;
+    margin-bottom: $spacing-lg;
+  }
+
+  .discount-code {
+    font-size: $font-size-lg;
+  }
+}
+
+@include respond-to(xs) {
+  .modal-content {
+    padding: $spacing-md $spacing-sm $spacing-xl;
+    min-height: 50vh;
+  }
+
+  .modal-title {
+    font-size: $font-size-base;
+    margin-bottom: $spacing-md;
+  }
+
+  .discount-code {
+    font-size: $font-size-md;
+    letter-spacing: 0.15em;
+  }
+}
+
+@keyframes cardInMobile {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cardOutMobile {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(100%); }
+}

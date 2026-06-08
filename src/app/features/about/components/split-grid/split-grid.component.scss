@@ -1,0 +1,102 @@
+:host {
+  display: block;
+  --site--gutter: clamp(0.625rem, 0.625rem + 0vw, 0.625rem);
+}
+
+.split-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--site--gutter);
+  padding-top: var(--site--gutter);
+  padding-left: var(--site--gutter);
+  padding-right: var(--site--gutter);
+  padding-bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.static-section,
+.flickthrough-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.static-section {
+  aspect-ratio: 705 / 1166;
+}
+
+.flickthrough-section {
+  aspect-ratio: 705 / 544;
+  cursor: pointer;
+}
+
+.static-image-wrapper,
+.flickthrough-image-wrapper {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.flickthrough-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.flickthrough-image-wrapper {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+  }
+}
+
+.flickthrough-container:not(.is-initialized) .flickthrough-image-wrapper:first-child {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+
+::ng-deep .fill-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .split-grid-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .static-section {
+    aspect-ratio: 1 / 1.4;
+  }
+
+  .flickthrough-section {
+    aspect-ratio: 1 / 0.77;
+  }
+}
+
+@media (max-width: 768px) {
+  .split-grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .static-section {
+    aspect-ratio: 705 / 1166;
+  }
+
+  .flickthrough-section {
+    aspect-ratio: 705 / 544;
+  }
+}

@@ -1,0 +1,45 @@
+@mixin text-rotate-x(
+  $duration: 500ms,
+  $easing: cubic-bezier(0.76, 0, 0.24, 1),
+  $perspective: 400px,
+  $color: inherit
+) {
+  perspective: $perspective;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  color: $color;
+
+  .detail-wrap {
+    position: relative;
+    display: inline-block;
+    transform-style: preserve-3d;
+    transition: transform $duration $easing;
+
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: $color;
+      transform: rotateX(-90deg) translateY(50%) translateZ(0.5em);
+      transform-origin: bottom center;
+      white-space: nowrap;
+      backface-visibility: hidden;
+    }
+  }
+
+  .detail-text {
+    display: block;
+    transform-origin: top center;
+    backface-visibility: hidden;
+    transition: transform $duration $easing;
+  }
+
+  &:hover,
+  &.is-hovered {
+    .detail-wrap {
+      transform: rotateX(90deg) translateY(-50%) translateZ(0.5em);
+    }
+  }
+}

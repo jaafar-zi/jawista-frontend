@@ -1,0 +1,49 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.collection-header {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: 5rem;
+
+  &__col {
+    flex: 0 0 33.3333%;
+    display: flex;
+
+    &:first-child {
+      justify-content: flex-start;
+    }
+
+    &:last-child {
+      justify-content: flex-end;
+    }
+
+    &--center {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+  &__center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__year {
+  }
+
+  &__count {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-normal;
+    color: $color-black;
+    white-space: nowrap;
+
+    @include respond-to(sm) {
+      font-size: $font-size-sm;
+    }
+  }
+}

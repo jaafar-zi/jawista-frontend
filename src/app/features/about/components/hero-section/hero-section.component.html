@@ -1,0 +1,48 @@
+<section class="hero-section">
+  <!-- Left side: Logo -->
+  <div class="left-side">
+    <div class="logo-container">
+      <div class="logo-wrapper">
+        @if (heroImageUrl$ | async; as heroImageUrl) {
+          <app-image-with-fallback
+            [src]="heroImageUrl"
+            customClass="nav-logo_img">
+          </app-image-with-fallback>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Right side: Text content with hover -->
+  <div class="right-side"
+       (mouseenter)="onMouseEnter()"
+       (mouseleave)="onMouseLeave()">
+
+    <div class="content-wrapper" #contentWrapper>
+
+      <!-- Headline (disappears on hover) -->
+      <div class="headline"
+           [class.hidden]="hoveredSection"
+           [attr.aria-hidden]="hoveredSection">
+        <h1 class="headline-text">
+          {{ 'about.heroSection.title' | transloco }}
+        </h1>
+      </div>
+
+      <!-- Description (appears on hover) -->
+      <div class="description"
+           [class.visible]="hoveredSection"
+           [attr.aria-hidden]="!hoveredSection">
+
+        <p class="description-text">
+          <span class="description-label">
+            {{ 'about.heroSection.ourName' | transloco }}
+          </span>
+          {{ 'about.heroSection.description' | transloco }}
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+</section>

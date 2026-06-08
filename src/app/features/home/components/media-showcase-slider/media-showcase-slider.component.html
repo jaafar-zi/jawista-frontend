@@ -1,0 +1,99 @@
+<section
+  #sliderContainer
+  class="showcase-slider"
+  [attr.aria-label]="'home.showcaseSlider.navigation.sliderRegionAriaLabel' | transloco"
+  role="region"
+>
+
+  <!-- ── Slides Container ────────────────────────────────────────────────────── -->
+  <div
+    class="showcase-slider__slides"
+    appHoverFollow
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    <div
+      *ngFor="let slide of facade.slides; let i = index; trackBy: trackBySlideId"
+      class="showcase-slider__slide"
+      [class.showcase-slider__slide--active]="i === facade.currentIndex"
+      [class.showcase-slider__slide--prev]="i < facade.currentIndex"
+      [class.showcase-slider__slide--next]="i > facade.currentIndex"
+      role="group"
+      [attr.aria-label]="facade.getSlideAriaLabel(i)"
+      [attr.aria-hidden]="i !== facade.currentIndex"
+    >
+      <div class="showcase-slider__image-wrapper">
+        <img
+          [src]="slide.imageUrl"
+          class="showcase-slider__image"
+          [loading]="i === 0 ? 'eager' : 'lazy'"
+        />
+        <div class="overlay-inner"></div>
+      </div>
+    </div>
+
+    <!-- Screen-reader live announcement -->
+    <div
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      {{ facade.liveStatusAnnouncement }}
+    </div>
+  </div>
+
+  <!-- ── Navigation Zones (Left = Prev, Right = Next) ───────────────────────── -->
+  <div
+    class="showcase-slider__nav-zone showcase-slider__nav-zone--prev"
+    (mouseenter)="onNavZoneEnter('prev')"
+    (mouseleave)="onNavZoneLeave()"
+    (click)="onNavZoneClick('prev', $event)"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="showcase-slider__nav-zone showcase-slider__nav-zone--next"
+    (mouseenter)="onNavZoneEnter('next')"
+    (mouseleave)="onNavZoneLeave()"
+    (click)="onNavZoneClick('next', $event)"
+    aria-hidden="true"
+  ></div>
+
+  <!-- ── Custom Cursor (Desktop only) ───────────────────────────────────────── -->
+  <div
+    class="showcase-slider__cursor"
+    [class.showcase-slider__cursor--visible]="
+      facade.showCursor && facade.navigationDirection !== ''"
+    [ngStyle]="facade.cursorStyles"
+    aria-hidden="true"
+  >
+    <span class="showcase-slider__cursor-text">
+      [ {{ facade.navigationText }} ]
+    </span>
+  </div>
+
+  <!-- ── Screen-reader Navigation Controls ──────────────────────────────────── -->
+  <div class="sr-only">
+    <button
+      type="button"
+      (click)="facade.prevSlide()"
+      [disabled]="facade.isTransitioning"
+      [attr.aria-label]="'Previous slide'"
+    >
+      Previous
+    </button>
+    <button
+      type="button"
+      (click)="facade.nextSlide()"
+      [disabled]="facade.isTransitioning"
+      [attr.aria-label]="'Next slide'"
+    >
+      Next
+    </button>
+    <span>
+      Slide {{ facade.currentIndex + 1 }} of {{ facade.slides.length }}
+    </span>
+  </div>
+
+</section>
